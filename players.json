@@ -1,0 +1,366 @@
+[
+  {
+    "name": "Federico Vilar",
+    "teams": ["atlante", "morelia", "atlas", "tijuana"],
+    "nats": ["arg"],
+    "flags": "LCPA",
+    "era": "2003-2016"
+  },
+  {
+    "name": "Christian Bermúdez",
+    "teams": ["atlante", "america", "queretaro", "jaguares", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCPA",
+    "era": "2006-2025"
+  },
+  {
+    "name": "Gabriel Pereyra",
+    "teams": ["cruzazul", "atlante", "morelia", "puebla", "tecos"],
+    "nats": ["arg"],
+    "flags": "LC",
+    "era": "2005-2012"
+  },
+  {
+    "name": "Giancarlo Maldonado",
+    "teams": ["atlante", "atlas"],
+    "nats": ["ven"],
+    "flags": "LC",
+    "era": "2007-2011"
+  },
+  {
+    "name": "Rafael Márquez Lugo",
+    "teams": ["pumas", "jaguares", "morelia", "pachuca", "tecos", "america", "atlante", "chivas"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2000-2014"
+  },
+  {
+    "name": "Daniel Arreola",
+    "teams": ["atlante", "pachuca", "atlas", "morelia", "dorados", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2008-2021"
+  },
+  {
+    "name": "Clemente Ovalle",
+    "teams": ["monterrey", "atlante"],
+    "nats": ["mex"],
+    "flags": "LC",
+    "era": "2004-2011"
+  },
+  {
+    "name": "Luis Gabriel Rey",
+    "teams": ["atlante", "morelia", "pachuca", "jaguares", "america", "puebla"],
+    "nats": ["col", "mex"],
+    "flags": "LGPB",
+    "era": "2003-2017"
+  },
+  {
+    "name": "Sebastián González",
+    "teams": ["atlante", "tigres", "veracruz", "tecos", "leon"],
+    "nats": ["chi"],
+    "flags": "P",
+    "era": "2002-2009"
+  },
+  {
+    "name": "José Antonio Castro",
+    "teams": ["america", "tigres", "necaxa", "tecos", "sanluis", "atlante"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "2001-2014"
+  },
+  {
+    "name": "Félix Fernández",
+    "teams": ["atlante", "celaya", "sanluis"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "1989-2003"
+  },
+  {
+    "name": "Rubén Omar Romano",
+    "teams": ["america", "leon", "necaxa", "puebla", "queretaro", "cruzazul", "atlante", "veracruz"],
+    "nats": ["arg"],
+    "flags": "P",
+    "era": "1980-1995"
+  },
+  {
+    "name": "Miguel Herrera",
+    "teams": ["tecos", "santos", "atlante", "queretaro", "torosneza"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "1988-2000"
+  },
+  {
+    "name": "Guillermo Cantú",
+    "teams": ["atlante", "leon", "celaya"],
+    "nats": ["mex"],
+    "flags": "L",
+    "era": "1987-1998"
+  },
+  {
+    "name": "Wilson Graniolatti",
+    "teams": ["toluca", "santos", "atlante"],
+    "nats": ["uru"],
+    "flags": "L",
+    "era": "1986-1996"
+  },
+  {
+    "name": "Raúl Gutiérrez",
+    "teams": ["atlante", "america", "leon"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "1988-2002"
+  },
+  {
+    "name": "José Guadalupe Cruz",
+    "teams": ["atlante"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "1988-2000"
+  },
+  {
+    "name": "Cabinho",
+    "teams": ["pumas", "atlante", "leon", "tigres"],
+    "nats": ["bra"],
+    "flags": "LCGPB",
+    "era": "1974-1987"
+  },
+  {
+    "name": "Hugo Sánchez",
+    "teams": ["pumas", "america", "atlante"],
+    "nats": ["mex"],
+    "flags": "LCEMPB",
+    "era": "1976-1997"
+  },
+  {
+    "name": "Jorge Campos",
+    "teams": ["pumas", "atlante", "cruzazul", "tigres", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "1988-2004"
+  },
+  {
+    "name": "Manuel Negrete",
+    "teams": ["pumas", "monterrey", "atlante"],
+    "nats": ["mex"],
+    "flags": "LEMP",
+    "era": "1979-1996"
+  },
+  {
+    "name": "Luis Roberto Alves Zague",
+    "teams": ["america", "atlante", "necaxa"],
+    "nats": ["mex", "bra"],
+    "flags": "LCMPGB",
+    "era": "1985-2003"
+  },
+  {
+    "name": "Carlos Hermosillo",
+    "teams": ["america", "monterrey", "cruzazul", "necaxa", "atlante", "chivas"],
+    "nats": ["mex"],
+    "flags": "LCEMGPB",
+    "era": "1983-2001"
+  },
+  {
+    "name": "Luis García Postigo",
+    "teams": ["pumas", "america", "atlante", "chivas", "morelia", "puebla"],
+    "nats": ["mex"],
+    "flags": "LEMPGB",
+    "era": "1986-2000"
+  },
+  {
+    "name": "Francisco Fonseca",
+    "teams": ["pumas", "cruzazul", "tigres", "atlante", "santos"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "2002-2014"
+  },
+  {
+    "name": "Fernando Navarro",
+    "teams": ["atlante", "tigres", "leon", "pachuca", "toluca", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2008-2024"
+  },
+  {
+    "name": "Osvaldo Martínez",
+    "teams": ["monterrey", "atlante", "america", "santos", "atlas", "puebla", "queretaro"],
+    "nats": ["par"],
+    "flags": "LCP",
+    "era": "2009-2021"
+  },
+  {
+    "name": "Ángel Sepúlveda",
+    "teams": ["morelia", "atlante", "queretaro", "chivas", "necaxa", "tijuana", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "CPA",
+    "era": "2010-2026"
+  },
+  {
+    "name": "Ricardo La Volpe",
+    "teams": ["atlante"],
+    "nats": ["arg"],
+    "flags": "MA",
+    "era": "1979-1983"
+  },
+  {
+    "name": "Víctor Manuel Vucetich",
+    "teams": ["atlante"],
+    "nats": ["mex"],
+    "flags": "A",
+    "era": "1978-1983"
+  },
+  {
+    "name": "Horacio Casarín",
+    "teams": ["necaxa", "atlante", "america"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "1936-1956"
+  },
+  {
+    "name": "Héctor Miguel Zelada",
+    "teams": ["america", "atlante"],
+    "nats": ["arg"],
+    "flags": "LCMP",
+    "era": "1979-1990"
+  },
+  {
+    "name": "Salvador Carmona",
+    "teams": ["toluca", "atlante", "chivas", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "1993-2007"
+  },
+  {
+    "name": "José Manuel Abundis",
+    "teams": ["toluca", "atlante", "monterrey", "pachuca", "queretaro"],
+    "nats": ["mex"],
+    "flags": "LGP",
+    "era": "1992-2006"
+  },
+  {
+    "name": "Fabián Estay",
+    "teams": ["toluca", "america", "atlante", "santos"],
+    "nats": ["chi"],
+    "flags": "LMP",
+    "era": "1995-2004"
+  },
+  {
+    "name": "Moisés Muñoz",
+    "teams": ["morelia", "atlante", "america", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1999-2018"
+  },
+  {
+    "name": "Michael Arroyo",
+    "teams": ["sanluis", "atlante", "america"],
+    "nats": ["ecu"],
+    "flags": "LCM",
+    "era": "2010-2017"
+  },
+  {
+    "name": "Elías Hernández",
+    "teams": ["morelia", "pachuca", "tigres", "leon", "cruzazul", "atlante"],
+    "nats": ["mex"],
+    "flags": "LCPA",
+    "era": "2007-2024"
+  },
+  {
+    "name": "Adrián Chávez",
+    "teams": ["necaxa", "america", "leon", "atlante"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "1981-2000"
+  },
+  {
+    "name": "Antonio Carlos Santos",
+    "teams": ["america", "tigres", "veracruz", "morelia", "atlante"],
+    "nats": ["bra"],
+    "flags": "LCGP",
+    "era": "1987-1999"
+  },
+  {
+    "name": "Daniel Guzmán",
+    "teams": ["atlante", "santos", "chivas", "puebla", "atlas", "pachuca"],
+    "nats": ["mex"],
+    "flags": "LGP",
+    "era": "1984-1998"
+  },
+  {
+    "name": "Fernando Arce",
+    "teams": ["veracruz", "atlante", "morelia", "santos", "tijuana", "chivas", "dorados"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2000-2016"
+  },
+  {
+    "name": "Ezequiel Miralles",
+    "teams": ["atlante"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2013"
+  },
+  {
+    "name": "Alberto García",
+    "teams": ["queretaro", "atlante", "chivas", "america"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2012-2016"
+  },
+  {
+    "name": "Jaime Gómez",
+    "teams": ["queretaro", "tijuana", "juarez", "puebla", "atlante"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2012-2026"
+  },
+  {
+    "name": "Jonathan Bornstein",
+    "teams": ["tigres", "atlante", "queretaro"],
+    "nats": ["usa"],
+    "flags": "M",
+    "era": "2011-2018"
+  },
+  {
+    "name": "Alain N'Kong",
+    "teams": ["atlante"],
+    "nats": ["cmr"],
+    "flags": "L",
+    "era": "2007"
+  },
+  {
+    "name": "Achille Emaná",
+    "teams": ["cruzazul", "atlante"],
+    "nats": ["cmr"],
+    "flags": "EM",
+    "era": "2013-2014"
+  },
+  {
+    "name": "Walter Gassire",
+    "teams": ["toluca", "atlante"],
+    "nats": ["uru"],
+    "flags": "L",
+    "era": "1974-1983"
+  },
+  {
+    "name": "Mateo Bravo",
+    "teams": ["pachuca", "tigres", "atlante"],
+    "nats": ["mex"],
+    "flags": "L",
+    "era": "1974-1986"
+  },
+  {
+    "name": "Marco Antonio Figueroa",
+    "teams": ["morelia", "america", "atlante"],
+    "nats": ["chi"],
+    "flags": "GP",
+    "era": "1986-1998"
+  },
+  {
+    "name": "Jesús Olalde",
+    "teams": ["pumas", "tigres", "atlante"],
+    "nats": ["mex"],
+    "flags": "GPB",
+    "era": "1993-2007"
+  }
+]
