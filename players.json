@@ -1805,6 +1805,1142 @@
     "flags": "LP",
     "era": "2008-2022"
   },
+    {
+    "name": "Dayro Moreno",
+    "teams": ["tijuana"],
+    "nats": ["col"],
+    "flags": "EMB",
+    "era": "2011-2016"
+  },
+  {
+    "name": "Fidel Martínez",
+    "teams": ["tijuana", "pumas", "atlas", "queretaro"],
+    "nats": ["ecu"],
+    "flags": "LMP",
+    "era": "2012-2021"
+  },
+  {
+    "name": "Javier Gandolfi",
+    "teams": ["jaguares", "tijuana"],
+    "nats": ["arg"],
+    "flags": "LP",
+    "era": "2009-2016"
+  },
+  {
+    "name": "Cristian Pellerano",
+    "teams": ["tijuana", "america", "morelia", "veracruz"],
+    "nats": ["arg"],
+    "flags": "LC",
+    "era": "2012-2017"
+  },
+  {
+    "name": "Joe Corona",
+    "teams": ["tijuana", "veracruz", "dorados", "america"],
+    "nats": ["usa", "mex"],
+    "flags": "LP",
+    "era": "2010-2026"
+  },
+  {
+    "name": "Duvier Riascos",
+    "teams": ["puebla", "tijuana", "pachuca", "morelia", "necaxa"],
+    "nats": ["col"],
+    "flags": "LP",
+    "era": "2011-2017"
+  },
+  {
+    "name": "Richard Ruiz",
+    "teams": ["tijuana", "cruzazul", "veracruz", "toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2010-2021"
+  },
+  {
+    "name": "Joshua Ábrego",
+    "teams": ["tijuana", "dorados"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2011-2017"
+  },
+  {
+    "name": "Greg Garza",
+    "teams": ["tijuana", "atlas"],
+    "nats": ["usa", "mex"],
+    "flags": "LE",
+    "era": "2012-2016"
+  },
+  {
+    "name": "Jorge Hernández",
+    "teams": ["atlas", "tijuana", "veracruz"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2006-2017"
+  },
+  {
+    "name": "Raúl Enríquez",
+    "teams": ["jaguares", "tijuana", "dorados"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2005-2016"
+  },
+  {
+    "name": "Juan Carlos Núñez",
+    "teams": ["toluca", "tijuana", "dorados"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2006-2020"
+  },
+  {
+    "name": "Leandro Augusto",
+    "teams": ["leon", "pumas", "tijuana", "puebla"],
+    "nats": ["bra", "mex"],
+    "flags": "LP",
+    "era": "2000-2014"
+  },
+  {
+    "name": "Juan Arango",
+    "teams": ["monterrey", "pachuca", "puebla", "tijuana"],
+    "nats": ["ven"],
+    "flags": "CEP",
+    "era": "2000-2015"
+  },
+  {
+    "name": "Mauro Gerk",
+    "teams": ["queretaro", "tijuana"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2005-2012"
+  },
+  {
+    "name": "José Sand",
+    "teams": ["tijuana"],
+    "nats": ["arg"],
+    "flags": "E",
+    "era": "2011-2012"
+  },
+  {
+    "name": "Gustavo Bou",
+    "teams": ["tijuana"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2017-2019"
+  },
+  {
+    "name": "Miller Bolaños",
+    "teams": ["tijuana"],
+    "nats": ["ecu"],
+    "flags": "M",
+    "era": "2017-2020"
+  },
+  {
+    "name": "Damián Pérez",
+    "teams": ["tijuana"],
+    "nats": ["arg"],
+    "flags": "E",
+    "era": "2016-2018"
+  },
+  {
+    "name": "Juan Carlos Valenzuela",
+    "teams": ["atlas", "tecos", "america", "tijuana"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2003-2019"
+  },
+  {
+    "name": "Alejandro Guido",
+    "teams": ["tijuana"],
+    "nats": ["usa", "mex"],
+    "flags": "",
+    "era": "2013-2019"
+  },
+  {
+    "name": "Carlos Valenzuela",
+    "teams": ["tijuana", "queretaro"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2021-2026"
+  },
+  {
+    "name": "Christian Rivera",
+    "teams": ["tijuana", "queretaro"],
+    "nats": ["col"],
+    "flags": "P",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Kevin Castañeda",
+    "teams": ["toluca", "tijuana"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Domingo Blanco",
+    "teams": ["tijuana"],
+    "nats": ["arg"],
+    "flags": "E",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Emanuel Reynoso",
+    "teams": ["tijuana"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Aarón Mejía",
+    "teams": ["tijuana"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Jesús Gómez",
+    "teams": ["atlas", "tijuana"],
+    "nats": ["mex"],
+    "flags": "E",
+    "era": "2019-2026"
+  },
+  {
+    "name": "Rafael Fernández",
+    "teams": ["queretaro", "tijuana"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2021-2026"
+  },
+  {
+    "name": "Nicolás Díaz",
+    "teams": ["mazatlan", "tijuana", "puebla"],
+    "nats": ["chi"],
+    "flags": "P",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Francisco Contreras",
+    "teams": ["tijuana"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2022-2026"
+  },
+  {
+    "name": "Jhojan Julio",
+    "teams": ["santos", "tijuana"],
+    "nats": ["ecu"],
+    "flags": "M",
+    "era": "2022-2026"
+  },
+  {
+    "name": "José Zúñiga",
+    "teams": ["queretaro", "tijuana", "america"],
+    "nats": ["col"],
+    "flags": "B",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Gilberto Mora",
+    "teams": ["tijuana"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Efraín Álvarez",
+    "teams": ["tijuana", "chivas"],
+    "nats": ["mex", "usa"],
+    "flags": "",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Carlos González",
+    "teams": ["necaxa", "pumas", "tigres", "toluca", "tijuana"],
+    "nats": ["par"],
+    "flags": "LP",
+    "era": "2017-2024"
+  },
+  {
+    "name": "Jonathan Orozco",
+    "teams": ["monterrey", "santos", "tijuana"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2005-2023"
+  },
+  {
+    "name": "Ignacio Rivero",
+    "teams": ["tijuana", "cruzazul"],
+    "nats": ["uru"],
+    "flags": "LCP",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Avilés Hurtado",
+    "teams": ["pachuca", "jaguares", "tijuana", "monterrey", "juarez"],
+    "nats": ["col", "mex"],
+    "flags": "LCPB",
+    "era": "2013-2026"
+  },
+  {
+    "name": "Darwin Quintero",
+    "teams": ["santos", "america", "tijuana"],
+    "nats": ["col"],
+    "flags": "LCEP",
+    "era": "2009-2022"
+  },
+  {
+    "name": "Luis Chávez",
+    "teams": ["tijuana", "pachuca"],
+    "nats": ["mex"],
+    "flags": "LCEMP",
+    "era": "2014-2023"
+  },
+  {
+    "name": "Víctor Guzmán Olmedo",
+    "teams": ["tijuana", "monterrey"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Diego Barbosa",
+    "teams": ["atlas", "tijuana", "toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2016-2026"
+  },
+  {
+    "name": "Camilo Sanvezzo",
+    "teams": ["queretaro", "tijuana", "mazatlan", "toluca"],
+    "nats": ["bra"],
+    "flags": "GPB",
+    "era": "2014-2023"
+  },
+  {
+    "name": "Gil Alcalá",
+    "teams": ["queretaro", "tijuana", "pumas"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Luis Fuentes",
+    "teams": ["pumas", "monterrey", "tijuana", "america"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2009-2024"
+  },
+  {
+    "name": "Gibran Lajud",
+    "teams": ["cruzazul", "tijuana", "santos"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2014-2024"
+  },
+  {
+    "name": "Fabián Castillo",
+    "teams": ["tijuana", "queretaro", "juarez"],
+    "nats": ["col"],
+    "flags": "EP",
+    "era": "2018-2023"
+  },
+  {
+    "name": "Ariel Nahuelpán",
+    "teams": ["pumas", "pachuca", "tijuana", "queretaro", "mazatlan"],
+    "nats": ["arg"],
+    "flags": "CEP",
+    "era": "2013-2022"
+  },
+  {
+    "name": "Bryan Angulo",
+    "teams": ["cruzazul", "tijuana"],
+    "nats": ["ecu"],
+    "flags": "L",
+    "era": "2019-2022"
+  }
+  {
+    "name": "Christian Giménez",
+    "teams": ["veracruz", "america", "pachuca", "cruzazul"],
+    "nats": ["arg", "mex"],
+    "flags": "LCP",
+    "era": "2004-2018"
+  },
+  {
+    "name": "Jesús Corona",
+    "teams": ["atlas", "tecos", "chivas", "cruzazul", "tijuana"],
+    "nats": ["mex"],
+    "flags": "LCMPA",
+    "era": "2003-2025"
+  },
+  {
+    "name": "Gerardo Torrado",
+    "teams": ["pumas", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "CEMP",
+    "era": "1997-2016"
+  },
+  {
+    "name": "Francisco Palencia",
+    "teams": ["cruzazul", "chivas", "pumas"],
+    "nats": ["mex"],
+    "flags": "LCEMP",
+    "era": "1994-2011"
+  },
+  {
+    "name": "Carlos Rotondi",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "C",
+    "era": "2022-2026"
+  },
+  {
+    "name": "Uriel Antuna",
+    "teams": ["santos", "chivas", "cruzazul", "tigres"],
+    "nats": ["mex"],
+    "flags": "CEMP",
+    "era": "2017-2026"
+  },
+  {
+    "name": "Erik Lira",
+    "teams": ["pumas", "necaxa", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "CP",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Carlos Rodríguez",
+    "teams": ["monterrey", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "LCEMP",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Kevin Mier",
+    "teams": ["cruzazul"],
+    "nats": ["col"],
+    "flags": "C",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Lorenzo Faravelli",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "C",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Willer Ditta",
+    "teams": ["cruzazul"],
+    "nats": ["col"],
+    "flags": "C",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Gonzalo Piovi",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "C",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Giorgos Giakoumakis",
+    "teams": ["cruzazul"],
+    "nats": ["gre"],
+    "flags": "CE",
+    "era": "2024-2025"
+  },
+  {
+    "name": "Mateusz Bogusz",
+    "teams": ["cruzazul"],
+    "nats": ["pol"],
+    "flags": "CE",
+    "era": "2025-2026"
+  },
+  {
+    "name": "Luka Romero",
+    "teams": ["cruzazul"],
+    "nats": ["arg", "mex"],
+    "flags": "CE",
+    "era": "2025-2026"
+  },
+  {
+    "name": "Gabriel Fernández",
+    "teams": ["juarez", "pumas", "cruzazul"],
+    "nats": ["uru"],
+    "flags": "CE",
+    "era": "2021-2026"
+  },
+  {
+    "name": "Luis Romo",
+    "teams": ["queretaro", "cruzazul", "monterrey", "chivas"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Santiago Giménez",
+    "teams": ["cruzazul"],
+    "nats": ["mex", "arg"],
+    "flags": "LEMP",
+    "era": "2017-2022"
+  },
+  {
+    "name": "Jonathan Rodríguez",
+    "teams": ["santos", "cruzazul", "america"],
+    "nats": ["uru"],
+    "flags": "LMPB",
+    "era": "2016-2024"
+  },
+  {
+    "name": "Juan Escobar",
+    "teams": ["cruzazul", "toluca"],
+    "nats": ["par"],
+    "flags": "LP",
+    "era": "2019-2024"
+  },
+  {
+    "name": "Rafael Baca",
+    "teams": ["cruzazul", "monterrey"],
+    "nats": ["mex"],
+    "flags": "LCPA",
+    "era": "2014-2023"
+  },
+  {
+    "name": "Orbelín Pineda",
+    "teams": ["queretaro", "chivas", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "LCEMP",
+    "era": "2014-2021"
+  },
+  {
+    "name": "Roberto Alvarado",
+    "teams": ["pachuca", "necaxa", "cruzazul", "chivas"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "2017-2026"
+  },
+  {
+    "name": "Yoshimar Yotún",
+    "teams": ["cruzazul"],
+    "nats": ["per"],
+    "flags": "LEM",
+    "era": "2019-2021"
+  },
+  {
+    "name": "Mariano Pavone",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "CE",
+    "era": "2012-2014"
+  },
+  {
+    "name": "Joao Rojas",
+    "teams": ["morelia", "cruzazul"],
+    "nats": ["ecu"],
+    "flags": "CMP",
+    "era": "2011-2017"
+  },
+  {
+    "name": "Mauro Formica",
+    "teams": ["cruzazul", "pumas"],
+    "nats": ["arg"],
+    "flags": "CE",
+    "era": "2013-2017"
+  },
+  {
+    "name": "Rogelio Chávez",
+    "teams": ["cruzazul", "pachuca", "atlas", "veracruz"],
+    "nats": ["mex"],
+    "flags": "CP",
+    "era": "2004-2017"
+  },
+  {
+    "name": "Emanuel Villa",
+    "teams": ["atlas", "tecos", "cruzazul", "pumas", "tigres", "queretaro"],
+    "nats": ["arg"],
+    "flags": "EGPB",
+    "era": "2006-2017"
+  },
+  {
+    "name": "César Delgado",
+    "teams": ["cruzazul", "monterrey"],
+    "nats": ["arg"],
+    "flags": "LCEMP",
+    "era": "2003-2014"
+  },
+  {
+    "name": "Luciano Figueroa",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "E",
+    "era": "2004"
+  },
+  {
+    "name": "Mauro Camoranesi",
+    "teams": ["santos", "cruzazul"],
+    "nats": ["arg"],
+    "flags": "EM",
+    "era": "1995-2000"
+  },
+  {
+    "name": "Julio Zamora",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "L",
+    "era": "1993-1997"
+  },
+  {
+    "name": "Juan Reynoso",
+    "teams": ["cruzazul", "necaxa"],
+    "nats": ["per"],
+    "flags": "LP",
+    "era": "1994-2004"
+  },
+  {
+    "name": "Melvin Brown",
+    "teams": ["cruzazul", "jaguares", "puebla", "tecos"],
+    "nats": ["mex"],
+    "flags": "MP",
+    "era": "2001-2013"
+  },
+  {
+    "name": "Miguel Marín",
+    "teams": ["cruzazul"],
+    "nats": ["arg"],
+    "flags": "LCP",
+    "era": "1971-1981"
+  },
+  {
+    "name": "Fernando Bustos",
+    "teams": ["cruzazul", "necaxa"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1963-1979"
+  },
+  {
+    "name": "Octavio Muciño",
+    "teams": ["cruzazul", "chivas"],
+    "nats": ["mex"],
+    "flags": "LC",
+    "era": "1969-1974"
+  },
+  {
+    "name": "Eladio Vera",
+    "teams": ["cruzazul"],
+    "nats": ["par"],
+    "flags": "LC",
+    "era": "1971-1977"
+  },
+  {
+    "name": "Javier Guzmán",
+    "teams": ["cruzazul", "veracruz"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "1965-1978"
+  },
+  {
+    "name": "Ignacio Flores",
+    "teams": ["cruzazul"],
+    "nats": ["mex"],
+    "flags": "LMP",
+    "era": "1972-1990"
+  },
+  {
+    "name": "Javier Aquino",
+    "teams": ["cruzazul", "tigres"],
+    "nats": ["mex"],
+    "flags": "LCEMPA",
+    "era": "2010-2026"
+  },
+  {
+    "name": "Luis Amaranto Perea",
+    "teams": ["cruzazul"],
+    "nats": ["col"],
+    "flags": "CEM",
+    "era": "2012-2014"
+  },
+  {
+    "name": "Roque Santa Cruz",
+    "teams": ["cruzazul"],
+    "nats": ["par"],
+    "flags": "EM",
+    "era": "2015"
+  },
+  {
+    "name": "Cristian Riveros",
+    "teams": ["cruzazul"],
+    "nats": ["par"],
+    "flags": "EM",
+    "era": "2007-2010"
+  },
+  {
+    "name": "Edgar Méndez",
+    "teams": ["cruzazul", "necaxa"],
+    "nats": ["esp"],
+    "flags": "EP",
+    "era": "2017-2024"
+  },
+  {
+    "name": "Víctor Vázquez",
+    "teams": ["cruzazul"],
+    "nats": ["esp"],
+    "flags": "E",
+    "era": "2016"
+  },
+  {
+    "name": "Jesús Orozco Chiquete",
+    "teams": ["chivas", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "CP",
+    "era": "2021-2026"
+  },
+  {
+    "name": "Diber Cambindo",
+    "teams": ["cruzazul", "necaxa"],
+    "nats": ["col"],
+    "flags": "B",
+    "era": "2023-2026"
+  },
+  {
+    "name": "José Paradela",
+    "teams": ["necaxa", "cruzazul"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Jéremy Márquez",
+    "teams": ["atlas", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Omar Campos",
+    "teams": ["santos", "cruzazul"],
+    "nats": ["mex"],
+    "flags": "C",
+    "era": "2021-2026"
+  },
+  {
+    "name": "Benjamín Galindo",
+    "teams": ["chivas", "santos", "cruzazul", "pachuca"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "1979-2001"
+  },
+  {
+    "name": "Israel Castro",
+    "teams": ["pumas", "cruzazul", "chivas", "toluca"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "2002-2016"
+  },
+  {
+    "name": "Juan Carlos Cacho",
+    "teams": ["cruzazul", "pachuca", "pumas", "toluca", "puebla"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2000-2015"
+  },
+  {
+    "name": "Marvin Cabrera",
+    "teams": ["cruzazul", "pachuca", "morelia", "toluca"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2000-2012"
+  },
+    {
+    "name": "Antonio Naelson Sinha",
+    "teams": ["monterrey", "toluca", "queretaro"],
+    "nats": ["mex", "bra"],
+    "flags": "LCMP",
+    "era": "1998-2017"
+  },
+  {
+    "name": "Hernán Cristante",
+    "teams": ["toluca"],
+    "nats": ["arg"],
+    "flags": "LCP",
+    "era": "1993-2010"
+  },
+  {
+    "name": "Vicente Sánchez",
+    "teams": ["toluca", "america"],
+    "nats": ["uru"],
+    "flags": "LCEP",
+    "era": "2001-2012"
+  },
+  {
+    "name": "Paulinho",
+    "teams": ["toluca"],
+    "nats": ["por"],
+    "flags": "LEB",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Jesús Angulo",
+    "teams": ["santos", "atlas", "tigres", "toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2017-2026"
+  },
+  {
+    "name": "Tiago Volpi",
+    "teams": ["queretaro", "toluca"],
+    "nats": ["bra"],
+    "flags": "P",
+    "era": "2015-2025"
+  },
+  {
+    "name": "Marcel Ruiz",
+    "teams": ["queretaro", "tijuana", "toluca"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2018-2026"
+  },
+  {
+    "name": "Héctor Herrera",
+    "teams": ["pachuca", "toluca"],
+    "nats": ["mex"],
+    "flags": "EMPA",
+    "era": "2011-2026"
+  },
+  {
+    "name": "Jesús Gallardo",
+    "teams": ["pumas", "monterrey", "toluca"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "2014-2026"
+  },
+  {
+    "name": "Luan Garcia",
+    "teams": ["toluca"],
+    "nats": ["bra"],
+    "flags": "L",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Bruno Méndez",
+    "teams": ["toluca"],
+    "nats": ["uru"],
+    "flags": "L",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Federico Pereira",
+    "teams": ["toluca"],
+    "nats": ["uru"],
+    "flags": "L",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Andrés Pereira",
+    "teams": ["toluca"],
+    "nats": ["uru"],
+    "flags": "L",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Franco Romero",
+    "teams": ["toluca"],
+    "nats": ["arg"],
+    "flags": "L",
+    "era": "2025-2026"
+  },
+  {
+    "name": "Nicolás Castro",
+    "teams": ["toluca"],
+    "nats": ["arg"],
+    "flags": "LE",
+    "era": "2025-2026"
+  },
+  {
+    "name": "Helinho",
+    "teams": ["toluca"],
+    "nats": ["bra"],
+    "flags": "L",
+    "era": "2024-2026"
+  },
+  {
+    "name": "Robert Morales",
+    "teams": ["toluca"],
+    "nats": ["par"],
+    "flags": "L",
+    "era": "2023-2026"
+  },
+  {
+    "name": "Isaías Violante",
+    "teams": ["toluca", "america"],
+    "nats": ["mex"],
+    "flags": "L",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Brian García",
+    "teams": ["tijuana", "necaxa", "toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2020-2026"
+  },
+  {
+    "name": "Luis García",
+    "teams": ["jaguares", "puebla", "queretaro", "toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2012-2026"
+  },
+  {
+    "name": "Alfredo Talavera",
+    "teams": ["chivas", "tigres", "toluca", "pumas", "juarez"],
+    "nats": ["mex"],
+    "flags": "LMPA",
+    "era": "2003-2024"
+  },
+  {
+    "name": "Paulo da Silva",
+    "teams": ["toluca", "pachuca"],
+    "nats": ["par"],
+    "flags": "LEMP",
+    "era": "2003-2017"
+  },
+  {
+    "name": "Héctor Mancilla",
+    "teams": ["veracruz", "toluca", "tigres", "atlas", "morelia", "dorados"],
+    "nats": ["chi"],
+    "flags": "LGPB",
+    "era": "2006-2016"
+  },
+  {
+    "name": "Rafael García",
+    "teams": ["pumas", "toluca", "cruzazul", "atlas", "veracruz"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "1992-2008"
+  },
+  {
+    "name": "Enrique Alfaro",
+    "teams": ["toluca"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1994-2002"
+  },
+  {
+    "name": "David Rangel",
+    "teams": ["toluca", "cruzazul", "jaguares"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1988-2004"
+  },
+  {
+    "name": "Carlos María Morales",
+    "teams": ["toluca", "atlas", "tecos", "puebla"],
+    "nats": ["uru"],
+    "flags": "LGP",
+    "era": "1995-2006"
+  },
+  {
+    "name": "Víctor Ruiz",
+    "teams": ["cruzazul", "toluca", "necaxa"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1992-2006"
+  },
+  {
+    "name": "Alberto Macías",
+    "teams": ["toluca", "cruzazul", "america", "atlas", "sanluis"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "1991-2006"
+  },
+  {
+    "name": "Omar Blanco",
+    "teams": ["atlas", "toluca", "necaxa"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1996-2006"
+  },
+  {
+    "name": "Manuel de la Torre",
+    "teams": ["pumas", "toluca", "tigres"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "1999-2012"
+  },
+  {
+    "name": "Edgar Dueñas",
+    "teams": ["toluca", "jaguares", "puebla"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2004-2016"
+  },
+  {
+    "name": "Miguel Almazán",
+    "teams": ["toluca", "tijuana"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2002-2015"
+  },
+  {
+    "name": "Diego Novaretti",
+    "teams": ["toluca", "leon", "queretaro"],
+    "nats": ["arg"],
+    "flags": "LEP",
+    "era": "2009-2019"
+  },
+  {
+    "name": "Martín Romagnoli",
+    "teams": ["toluca", "pumas"],
+    "nats": ["arg"],
+    "flags": "LP",
+    "era": "2008-2015"
+  },
+  {
+    "name": "Néstor Calderón",
+    "teams": ["toluca", "pachuca", "santos", "chivas", "pumas"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "2008-2018"
+  },
+  {
+    "name": "Carlos Esquivel",
+    "teams": ["toluca", "tigres", "veracruz"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2005-2019"
+  },
+  {
+    "name": "Antonio Ríos",
+    "teams": ["toluca"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2008-2022"
+  },
+  {
+    "name": "Isaác Brizuela",
+    "teams": ["toluca", "atlas", "chivas"],
+    "nats": ["mex"],
+    "flags": "LCMP",
+    "era": "2009-2025"
+  },
+  {
+    "name": "Erbin Trejo",
+    "teams": ["toluca", "queretaro"],
+    "nats": ["mex"],
+    "flags": "LP",
+    "era": "2009-2020"
+  },
+  {
+    "name": "Lucas Lobos",
+    "teams": ["tigres", "toluca"],
+    "nats": ["arg", "mex"],
+    "flags": "LEP",
+    "era": "2008-2016"
+  },
+  {
+    "name": "Pablo Velázquez",
+    "teams": ["toluca", "morelia"],
+    "nats": ["par"],
+    "flags": "B",
+    "era": "2013-2016"
+  },
+  {
+    "name": "Enrique Triverio",
+    "teams": ["toluca", "queretaro"],
+    "nats": ["arg"],
+    "flags": "P",
+    "era": "2015-2021"
+  },
+  {
+    "name": "Fernando Uribe",
+    "teams": ["toluca"],
+    "nats": ["col"],
+    "flags": "E",
+    "era": "2015-2018"
+  },
+  {
+    "name": "William da Silva",
+    "teams": ["queretaro", "america", "toluca"],
+    "nats": ["bra"],
+    "flags": "CP",
+    "era": "2014-2021"
+  },
+  {
+    "name": "Leonardo Fernández",
+    "teams": ["tigres", "toluca"],
+    "nats": ["uru"],
+    "flags": "CP",
+    "era": "2020-2023"
+  },
+  {
+    "name": "Vicente Pereda",
+    "teams": ["toluca"],
+    "nats": ["mex"],
+    "flags": "LCGP",
+    "era": "1960-1976"
+  },
+  {
+    "name": "Amaury Epaminondas",
+    "teams": ["orizaba", "toluca", "tigres"],
+    "nats": ["bra"],
+    "flags": "LCGB",
+    "era": "1962-1970"
+  },
+  {
+    "name": "Juan Dosal",
+    "teams": ["toluca"],
+    "nats": ["mex"],
+    "flags": "LCP",
+    "era": "1961-1972"
+  },
+  {
+    "name": "Ítalo Estupiñán",
+    "teams": ["toluca", "america", "atletas", "puebla"],
+    "nats": ["ecu"],
+    "flags": "LP",
+    "era": "1974-1983"
+  },
+  {
+    "name": "Héctor Eugui",
+    "teams": ["toluca", "tigres"],
+    "nats": ["uru"],
+    "flags": "LP",
+    "era": "1972-1980"
+  },
+  {
+    "name": "Maximiliano Biancucchi",
+    "teams": ["cruzazul", "toluca"],
+    "nats": ["arg"],
+    "flags": "",
+    "era": "2010"
+  },
+  {
+    "name": "Bruno Marioni",
+    "teams": ["pumas", "toluca", "atlas", "pachuca", "tecos"],
+    "nats": ["arg"],
+    "flags": "LEPB",
+    "era": "2004-2009"
+  },
+  {
+    "name": "Diego Gama",
+    "teams": ["toluca"],
+    "nats": ["mex"],
+    "flags": "E",
+    "era": "2013-2016"
+  },
+  {
+    "name": "Iván Zamora",
+    "teams": ["toluca", "queretaro"],
+    "nats": ["mex"],
+    "flags": "",
+    "era": "2014-2018"
+  },
+  {
+    "name": "Alan Medina",
+    "teams": ["toluca", "america", "necaxa", "juarez", "mazatlan", "queretaro"],
+    "nats": ["mex"],
+    "flags": "P",
+    "era": "2018-2026"
+  },
+
+
 
 
 
