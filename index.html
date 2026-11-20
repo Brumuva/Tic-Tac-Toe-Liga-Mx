@@ -2279,6 +2279,8 @@
           });
 
           initNewGame(false);
+          loadExternalPlayers();
+
         } catch (err) {
           console.error("Error al iniciar GATO LIGA MX:", err);
           const grid = document.getElementById("game-grid");
