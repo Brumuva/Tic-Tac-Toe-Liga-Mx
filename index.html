@@ -1171,47 +1171,83 @@
       /**
        * 4. PROCESAMIENTO SEGURO DE LA BASE DE DATOS
        */
-      const PLAYER_MAP = new Map();
+            function buildPlayersFromEntries(entries) {
+        const localMap = new Map();
 
-      RAW_DB.forEach(entry => {
+        (entries || []).forEach(entry => {
+          try {
+            let name = "";
+            let rawTeams = [];
+            let rawNats = [];
+            let flags = "";
+            let era = "Liga MX";
+
+            if (Array.isArray(entry)) {
+              if (entry.length < 4) return;
+              name = String(entry[0] || "").trim();
+              rawTeams = Array.isArray(entry[1]) ? entry[1] : [];
+              rawNats = Array.isArray(entry[2]) ? entry[2] : [];
+              flags = String(entry[3] || "").toUpperCase();
+              era = String(entry[4] || "Liga MX");
+            } else if (entry && typeof entry === "object") {
+              name = String(entry.name || "").trim();
+              rawTeams = Array.isArray(entry.teams) ? entry.teams : [];
+              rawNats = Array.isArray(entry.nats) ? entry.nats : [];
+              flags = String(entry.flags || "").toUpperCase();
+              era = String(entry.era || "Liga MX");
+            } else {
+              return;
+            }
+
+            if (!name) return;
+
+            const id = cleanKey(name);
+            const teams = Array.from(new Set(rawTeams.map(normalizeTeamId).filter(Boolean)));
+            const nats = Array.from(new Set(rawNats.map(normalizeNatId).filter(Boolean)));
+
+            const ach = [];
+            if (flags.includes("L")) ach.push("campeon_liga");
+            if (flags.includes("C") || CONCA_CHAMPIONS_SET.has(id)) ach.push("campeon_conca");
+            if (flags.includes("E")) ach.push("europa");
+            if (flags.includes("M")) ach.push("mundial");
+            if (flags.includes("G")) ach.push("goles100");
+            if (flags.includes("P")) ach.push("partidos100");
+            if (flags.includes("A")) ach.push("edad35");
+            if (flags.includes("B")) ach.push("campeon_goleo");
+
+            if (!localMap.has(id)) {
+              localMap.set(id, { id, name, teams, nats, ach, era });
+            } else {
+              const existing = localMap.get(id);
+              existing.teams = Array.from(new Set([...existing.teams, ...teams]));
+              existing.nats = Array.from(new Set([...existing.nats, ...nats]));
+              existing.ach = Array.from(new Set([...existing.ach, ...ach]));
+            }
+          } catch (err) {
+            console.warn("Entrada omitida:", entry, err);
+          }
+        });
+
+        return Array.from(localMap.values());
+      }
+
+      let PLAYERS = buildPlayersFromEntries(RAW_DB);
+
+      async function loadExternalPlayers() {
         try {
-          if (!Array.isArray(entry) || entry.length < 4) return;
-          const name = String(entry[0] || "").trim();
-          if (!name) return;
-
-          const id = cleanKey(name);
-          const rawTeams = Array.isArray(entry[1]) ? entry[1] : [];
-          const rawNats = Array.isArray(entry[2]) ? entry[2] : [];
-          const flags = String(entry[3] || "").toUpperCase();
-          const era = String(entry[4] || "Liga MX");
-
-          const teams = Array.from(new Set(rawTeams.map(normalizeTeamId).filter(Boolean)));
-          const nats = Array.from(new Set(rawNats.map(normalizeNatId).filter(Boolean)));
-
-          const ach = [];
-          if (flags.includes("L")) ach.push("campeon_liga");
-          if (flags.includes("C") || CONCA_CHAMPIONS_SET.has(id)) ach.push("campeon_conca");
-          if (flags.includes("E")) ach.push("europa");
-          if (flags.includes("M")) ach.push("mundial");
-          if (flags.includes("G")) ach.push("goles100");
-          if (flags.includes("P")) ach.push("partidos100");
-          if (flags.includes("A")) ach.push("edad35");
-          if (flags.includes("B")) ach.push("campeon_goleo");
-
-          if (!PLAYER_MAP.has(id)) {
-            PLAYER_MAP.set(id, { id, name, teams, nats, ach, era });
-          } else {
-            const existing = PLAYER_MAP.get(id);
-            existing.teams = Array.from(new Set([...existing.teams, ...teams]));
-            existing.nats = Array.from(new Set([...existing.nats, ...nats]));
-            existing.ach = Array.from(new Set([...existing.ach, ...ach]));
+          const res = await fetch("./players.json", { cache: "no-store" });
+          if (!res.ok) return;
+          const jsonData = await res.json();
+          if (Array.isArray(jsonData) && jsonData.length > 0) {
+            PLAYERS = buildPlayersFromEntries([...RAW_DB, ...jsonData]);
+            const label = document.getElementById("db-count-label");
+            if (label) label.textContent = `${PLAYERS.length} futbolistas`;
+            initNewGame(false);
           }
         } catch (err) {
-          console.warn("Entrada omitida:", entry, err);
+          console.warn("Usando solo base interna:", err);
         }
-      });
-
-      const PLAYERS = Array.from(PLAYER_MAP.values());
+      }
 
       /**
        * 5. VALIDACIÓN EXACTA DE CRUCES
