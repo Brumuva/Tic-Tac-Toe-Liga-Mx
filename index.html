@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liga MX Grid — Fútbol 11</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: #131a26;
+      --panel-2: #1a2333;
+      --border: #263247;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --p2: #38bdf8;
+      --bot: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #131d31 0%, var(--bg) 65%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 12px 44px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 14px;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    header h1 span {
+      color: var(--accent);
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .modes-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .mode-group {
+      display: inline-flex;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .mode-btn {
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .mode-btn.active {
+      background: var(--accent);
+      color: #052e16;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .pill {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill strong {
+      color: var(--accent);
+    }
+
+    .btn {
+      background: var(--panel-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.16s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #052e16;
+    }
+
+    .board-wrapper {
+      width: 100%;
+      max-width: 720px;
+      overflow-x: auto;
+    }
+
+    .grid-board {
+      display: grid;
+      grid-template-columns: 124px repeat(3, minmax(110px, 1fr));
+      gap: 8px;
+      min-width: 470px;
+    }
+
+    .corner-cell {
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 6px;
+    }
+
+    .header-cell {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 9px 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 98px;
+      gap: 5px;
+    }
+
+    .crest-box {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .crest-box svg {
+      width: 44px;
+      height: 44px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+    }
+
+    .header-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .header-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #f8fafc;
+    }
+
+    .header-sub {
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .play-cell {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-height: 108px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .play-cell:hover:not(.solved):not(.missed):not(.locked) {
+      border-color: var(--accent);
+      background: #202c40;
+      transform: translateY(-2px);
+    }
+
+    .play-cell .plus {
+      font-size: 1.55rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .play-cell.solved-p1 {
+      background: linear-gradient(145deg, #123524, #0d261a);
+      border-color: var(--accent);
+      cursor: default;
+    }
+
+    .play-cell.solved-p2 {
+      background: linear-gradient(145deg, #0e2d42, #091d2b);
+      border-color: var(--p2);
+      cursor: default;
+    }
+
+    .play-cell.solved-bot {
+      background: linear-gradient(145deg, #3a290b, #241906);
+      border-color: var(--bot);
+      cursor: default;
+    }
+
+    .play-cell.missed {
+      background: linear-gradient(145deg, #33161a, #220f12);
+      border-color: var(--danger);
+      cursor: default;
+    }
+
+    .solved-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .solved-meta {
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      margin-top: 4px;
+    }
+
+    .owner-tag {
+      margin-top: 4px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .missed-meta {
+      font-size: 0.7rem;
+      color: #fca5a5;
+      margin-top: 4px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.82);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 470px;
+      padding: 18px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .modal-criteria {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.35rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .list-label {
+      margin-top: 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .suggestions {
+      margin-top: 6px;
+      max-height: 260px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .suggestion-item {
+      background: var(--panel-2);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 9px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.12s;
+    }
+
+    .suggestion-item:hover {
+      border-color: var(--accent);
+      background: #233047;
+    }
+
+    .suggestion-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .suggestion-era {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .rec-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.14);
+      padding: 2px 7px;
+      border-radius: 999px;
+      margin-left: 8px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      min-height: 20px;
+      color: #fca5a5;
+      font-weight: 600;
+    }
+
+    .summary-box {
+      margin-top: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      max-width: 720px;
+      width: 100%;
+      display: none;
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    .summary-box.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LIGA MX <span>GRID</span></h1>
+    <p>Completa la cuadrícula de 3×3 combinando clubes, nacionalidades y logros del fútbol mexicano.</p>
+  </header>
+
+  <div class="modes-bar">
+    <div class="mode-group" id="modeSelector">
+      <button class="mode-btn active" data-mode="solo">Solitario</button>
+      <button class="mode-btn" data-mode="p2">2 Jugadores</button>
+      <button class="mode-btn" data-mode="bot">VS Bot</button>
+    </div>
+    <div class="mode-group" id="botDifficultyGroup" style="display: none;">
+      <button class="mode-btn active" data-diff="easy">Bot Fácil</button>
+      <button class="mode-btn" data-diff="medium">Bot Medio</button>
+      <button class="mode-btn" data-diff="hard">Bot Difícil</button>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <div class="pill" id="turnPill">Turno: <strong id="turnLabel">Jugador 1</strong></div>
+    <div class="pill" id="scorePill">Aciertos: <strong id="scoreCount">0 / 9</strong></div>
+    <div class="pill" id="guessesPill">Intentos: <strong id="guessesLeft">9</strong></div>
+    <button class="btn" id="revealBtn">Rendirse / Ver respuestas</button>
+    <button class="btn btn-primary" id="newGameBtn">Nuevo tablero</button>
+  </div>
+
+  <div class="board-wrapper">
+    <div class="grid-board" id="gridBoard"></div>
+  </div>
+
+  <div class="summary-box" id="summaryBox"></div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-criteria" id="modalCriteria">Criterio</div>
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <input type="text" class="search-input" id="playerSearch" placeholder="Busca jugador o elige de recomendados..." autocomplete="off" />
+      <div class="feedback" id="modalFeedback"></div>
+      <div class="list-label" id="listLabel">Recomendados para esta casilla</div>
+      <div class="suggestions" id="suggestionsList"></div>
+    </div>
+  </div>
+
+<script>
+const TEAMS = {
+  america:   { name: "América",     short: "AME", p1: "#facc15", p2: "#1e3a8a" },
+  chivas:    { name: "Chivas",      short: "GDL", p1: "#dc2626", p2: "#ffffff" },
+  toluca:    { name: "Toluca",      short: "TOL", p1: "#b91c1c", p2: "#fef08a" },
+  cruzazul:  { name: "Cruz Azul",   short: "CAZ", p1: "#1d4ed8", p2: "#dc2626" },
+  pumas:     { name: "Pumas",       short: "UNM", p1: "#1e293b", p2: "#eab308" },
+  tigres:    { name: "Tigres",      short: "TIG", p1: "#f59e0b", p2: "#1e3a8a" },
+  monterrey: { name: "Monterrey",   short: "MTY", p1: "#0f172a", p2: "#38bdf8" },
+  santos:    { name: "Santos",      short: "SAN", p1: "#15803d", p2: "#0f172a" },
+  leon:      { name: "León",        short: "LEO", p1: "#166534", p2: "#facc15" },
+  pachuca:   { name: "Pachuca",     short: "PAC", p1: "#1e40af", p2: "#f8fafc" },
+  atlas:     { name: "Atlas",       short: "ATL", p1: "#991b1b", p2: "#0f172a" },
+  necaxa:    { name: "Necaxa",      short: "NEC", p1: "#ef4444", p2: "#f8fafc" },
+  puebla:    { name: "Puebla",      short: "PUE", p1: "#eff6ff", p2: "#1d4ed8" },
+  tijuana:   { name: "Tijuana",     short: "TIJ", p1: "#7f1d1d", p2: "#0f172a" },
+  sanluis:   { name: "San Luis",    short: "ASL", p1: "#be123c", p2: "#1d4ed8" },
+  queretaro: { name: "Querétaro",   short: "QRO", p1: "#172554", p2: "#38bdf8" },
+  juarez:    { name: "FC Juárez",   short: "JUA", p1: "#65a30d", p2: "#dc2626" },
+  atlante:   { name: "Atlante",     short: "ATN", p1: "#7f1d1d", p2: "#1d4ed8" }
+};
+
+function getTeamCrestSVG(teamId) {
+  const t = TEAMS[teamId];
+  if (!t) return "";
+  return `
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="${t.name}">
+      <defs>
+        <clipPath id="shield-${teamId}">
+          <path d="M12 8 H52 V30 C52 45 32 57 32 57 C32 57 12 45 12 30 Z" />
+        </clipPath>
+      </defs>
+      <g clip-path="url(#shield-${teamId})">
+        <rect x="10" y="6" width="44" height="54" fill="${t.p1}" />
+        <polygon points="10,6 54,6 10,56" fill="${t.p2}" opacity="0.92" />
+        <rect x="25" y="6" width="14" height="54" fill="rgba(255,255,255,0.14)" />
+      </g>
+      <path d="M12 8 H52 V30 C52 45 32 57 32 57 C32 57 12 45 12 30 Z"
+            fill="none" stroke="#f8fafc" stroke-width="2.6" />
+      <text x="32" y="34" text-anchor="middle" fill="#ffffff" font-size="11.5"
+            font-weight="900" font-family="Arial, sans-serif"
+            stroke="#0b0f17" stroke-width="2.2" paint-order="stroke">${t.short}</text>
+    </svg>
+  `;
+}
+
+const FLAGS = {
+  mex: { name: "México",          badge: "🇲🇽", bg: "#15803d", fg: "#ffffff" },
+  arg: { name: "Argentina",       badge: "🇦🇷", bg: "#38bdf8", fg: "#0f172a" },
+  bra: { name: "Brasil",          badge: "🇧🇷", bg: "#facc15", fg: "#166534" },
+  col: { name: "Colombia",        badge: "🇨🇴", bg: "#eab308", fg: "#1e3a8a" },
+  uru: { name: "Uruguay",         badge: "🇺🇾", bg: "#0284c7", fg: "#ffffff" },
+  chi: { name: "Chile",           badge: "🇨🇱", bg: "#dc2626", fg: "#ffffff" },
+  ecu: { name: "Ecuador",         badge: "🇪🇨", bg: "#facc15", fg: "#1d4ed8" },
+  par: { name: "Paraguay",        badge: "🇵🇾", bg: "#b91c1c", fg: "#ffffff" },
+  per: { name: "Perú",            badge: "🇵🇪", bg: "#dc2626", fg: "#ffffff" },
+  esp: { name: "España",          badge: "🇪🇸", bg: "#b91c1c", fg: "#facc15" },
+  fra: { name: "Francia",         badge: "🇫🇷", bg: "#1d4ed8", fg: "#ffffff" },
+  usa: { name: "Estados Unidos",  badge: "🇺🇸", bg: "#1e3a8a", fg: "#ffffff" },
+  can: { name: "Canadá",          badge: "🇨🇦", bg: "#dc2626", fg: "#ffffff" },
+  crc: { name: "Costa Rica",      badge: "🇨🇷", bg: "#1d4ed8", fg: "#dc2626" },
+  pan: { name: "Panamá",          badge: "🇵🇦", bg: "#ffffff", fg: "#dc2626" },
+  ven: { name: "Venezuela",       badge: "🇻🇪", bg: "#7f1d1d", fg: "#facc15" },
+  ned: { name: "Países Bajos",    badge: "🇳🇱", bg: "#ea580c", fg: "#ffffff" },
+  mar: { name: "Marruecos",       badge: "🇲🇦", bg: "#b91c1c", fg: "#15803d" },
+  gre: { name: "Grecia",          badge: "🇬🇷", bg: "#0284c7", fg: "#ffffff" },
+  civ: { name: "Costa de Marfil", badge: "🇨🇮", bg: "#f97316", fg: "#15803d" },
+  ger: { name: "Alemania",        badge: "🇩🇪", bg: "#0f172a", fg: "#facc15" },
+  por: { name: "Portugal",        badge: "🇵🇹", bg: "#15803d", fg: "#dc2626" }
+};
+
+const ACHIEVEMENTS = {
+  L: { name: "Campeón Liga MX",  short: "🏆", bg: "#eab308", fg: "#0f172a" },
+  C: { name: "Campeón Concacaf", short: "🌎", bg: "#0284c7", fg: "#ffffff" },
+  E: { name: "Jugó en Europa",   short: "🇪🇺", bg: "#1e3a8a", fg: "#facc15" },
+  M: { name: "Mundialista",      short: "🌐", bg: "#16a34a", fg: "#ffffff" },
+  G: { name: "100+ Goles MX",    short: "⚽", bg: "#dc2626", fg: "#ffffff" },
+  B: { name: "Campeón de Goleo", short: "👟", bg: "#f97316", fg: "#ffffff" }
+};
+
+// [Nombre, [clubes], [nacionalidades], flagsString, era]
+const RAW_DB = [
+  // ================= AMÉRICA =================
+  ["Cuauhtémoc Blanco", ["america", "necaxa"], ["mex"], "LCMPGB", "1992-2015"],
+  ["Guillermo Ochoa", ["america"], ["mex"], "LCEMP", "2004-2022"],
+  ["Henry Martín", ["tijuana", "america"], ["mex"], "LMPGB", "2013-2026"],
+  ["Salvador Cabañas", ["america"], ["par"], "CMP", "2003-2010"],
+  ["Zague", ["america", "atlante", "necaxa"], ["mex"], "LCMPGB", "1985-2003"],
+  ["Carlos Reinoso", ["america"], ["chi"], "LCMP", "1970-1979"],
+  ["Alfredo Tena", ["america"], ["mex"], "LCMP", "1973-1992"],
+  ["Cristóbal Ortega", ["america"], ["mex"], "LCMP", "1974-1992"],
+  ["Raúl Jiménez", ["america"], ["mex"], "LEMP", "2011-2014"],
+  ["Edson Álvarez", ["america"], ["mex"], "LEMP", "2016-2019"],
+  ["Guido Rodríguez", ["tijuana", "america"], ["arg"], "LEMP", "2016-2019"],
+  ["Agustín Marchesín", ["santos", "america"], ["arg"], "LEMP", "2015-2019"],
+  ["Álvaro Fidalgo", ["america"], ["esp"], "LEP", "2021-2026"],
+  ["Alejandro Zendejas", ["chivas", "necaxa", "america"], ["mex"], "LP", "2015-2026"],
+  ["Luis Ángel Malagón", ["necaxa", "america"], ["mex"], "LP", "2016-2026"],
+  ["Julián Quiñones", ["tigres", "atlas", "america"], ["col"], "LCP", "2016-2026"],
+  ["Diego Valdés", ["santos", "america"], ["chi"], "LP", "2016-2025"],
+  ["Oribe Peralta", ["santos", "america", "chivas", "monterrey"], ["mex"], "LCMP", "2003-2021"],
+  ["Rubens Sambueza", ["pumas", "america", "toluca", "leon", "pachuca", "sanluis"], ["arg"], "LCP", "2007-2022"],
+  ["Paul Aguilar", ["pachuca", "america", "juarez"], ["mex"], "LCMP", "2004-2022"],
+  ["Moisés Muñoz", ["atlante", "america", "puebla"], ["mex"], "LCP", "1999-2018"],
+  ["Miguel Layún", ["america", "monterrey"], ["mex"], "LCEMP", "2010-2023"],
+  ["Pável Pardo", ["atlas", "america"], ["mex"], "LCEMP", "1993-2011"],
+  ["Germán Villa", ["america", "necaxa"], ["mex"], "LCMP", "1991-2009"],
+  ["Duilio Davino", ["america", "puebla", "leon", "monterrey"], ["mex"], "LMP", "1993-2008"],
+  ["Ricardo Peláez", ["america", "necaxa", "chivas"], ["mex"], "LMP", "1985-2000"],
+  ["Luis Roberto Alves", ["america", "atlante", "necaxa"], ["mex"], "LCMPGB", "1985-2003"],
+  ["Claudio López", ["america"], ["arg"], "LCEMP", "2004-2006"],
+  ["Iván Zamorano", ["america"], ["chi"], "LEMPB", "2001-2002"],
+  ["Kleber Boas", ["tigres", "america", "necaxa"], ["bra"], "LPB", "2003-2006"],
+  ["Christian Benítez", ["santos", "america"], ["ecu"], "LPB", "2007-2013"],
+  ["Darío Benedetto", ["tijuana", "america"], ["arg"], "LC", "2013-2024"],
+  ["Bruno Valdez", ["america", "juarez"], ["par"], "LP", "2016-2023"],
+  ["Richard Sánchez", ["america"], ["par"], "LP", "2019-2025"],
+  ["Sebastián Cáceres", ["america"], ["uru"], "LMP", "2020-2026"],
+  ["Israel Reyes", ["puebla", "america", "atlas"], ["mex"], "LP", "2019-2026"],
+  ["Kevin Álvarez", ["pachuca", "america"], ["mex"], "LCMP", "2019-2026"],
+  ["Cristian Calderón", ["atlas", "necaxa", "chivas", "america"], ["mex"], "LP", "2017-2026"],
+  ["Jonathan dos Santos", ["america"], ["mex"], "LEMP", "2022-2026"],
+  ["Ramón Juárez", ["america", "puebla", "sanluis"], ["mex"], "LP", "2019-2026"],
+  ["Brian Rodríguez", ["america"], ["uru"], "LMP", "2022-2026"],
+  ["Rodrigo Aguirre", ["necaxa", "monterrey", "america"], ["uru"], "LP", "2021-2026"],
+  ["Víctor Dávila", ["necaxa", "pachuca", "leon", "america"], ["chi"], "LP", "2017-2026"],
+  ["Érick Sánchez", ["pachuca", "america"], ["mex"], "LCP", "2016-2026"],
+  ["Héctor Miguel Zelada", ["america", "atlante"], ["arg"], "LCP", "1979-1988"],
+  ["Gonzalo Farfán", ["america", "cruzazul", "pumas"], ["mex"], "LCP", "1981-1995"],
+  ["Eduardo Bacas", ["america"], ["arg"], "LCP", "1982-1988"],
+  ["Antonio Carlos Santos", ["america", "tigres", "atlante"], ["bra"], "LC", "1987-1995"],
+  ["Cecilio Domínguez", ["america", "santos"], ["par"], "LP", "2017-2019"],
+  ["Mateus Uribe", ["america"], ["col"], "LMP", "2017-2019"],
+  ["Roger Martínez", ["america"], ["col"], "LCP", "2018-2024"],
+  ["Emmanuel Aguilera", ["tijuana", "america", "atlas"], ["arg"], "LP", "2015-2023"],
+  ["Renato Ibarra", ["america", "atlas", "tijuana"], ["ecu"], "LCP", "2016-2024"],
+  ["Giovani dos Santos", ["america"], ["mex"], "LEMP", "2019-2021"],
+  ["Javairô Dilrosun", ["america"], ["ned"], "ELP", "2024-2026"],
+  ["Allan Saint-Maximin", ["america"], ["fra"], "EP", "2025-2026"],
+
+  // ================= CHIVAS =================
+  ["Omar Bravo", ["chivas", "tigres", "cruzazul", "atlas"], ["mex"], "LMPGB", "2001-2016"],
+  ["Javier Hernández", ["chivas"], ["mex"], "LEMPB", "2006-2026"],
+  ["Ramón Morales", ["monterrey", "chivas"], ["mex"], "LMP", "1995-2011"],
+  ["Oswaldo Sánchez", ["atlas", "america", "chivas", "santos"], ["mex"], "LMP", "1993-2014"],
+  ["Carlos Salcido", ["chivas", "tigres"], ["mex"], "LEMP", "2001-2019"],
+  ["Adolfo Bautista", ["pachuca", "chivas", "queretaro", "sanluis"], ["mex"], "LMP", "1998-2014"],
+  ["Alberto Medina", ["chivas", "pachuca", "puebla"], ["mex"], "LMP", "2000-2015"],
+  ["Héctor Reynoso", ["chivas"], ["mex"], "LP", "2001-2014"],
+  ["Jonny Magallón", ["chivas", "leon"], ["mex"], "LMP", "2005-2016"],
+  ["Marco Fabián", ["chivas", "cruzazul", "juarez"], ["mex"], "LEMP", "2007-2023"],
+  ["Rodolfo Pizarro", ["pachuca", "chivas", "monterrey", "juarez"], ["mex"], "LCMP", "2012-2026"],
+  ["Alan Pulido", ["tigres", "chivas"], ["mex"], "LCMP", "2009-2026"],
+  ["Orbelín Pineda", ["queretaro", "chivas", "cruzazul"], ["mex"], "LCMP", "2014-2021"],
+  ["Jair Pereira", ["cruzazul", "chivas", "queretaro", "necaxa"], ["mex"], "LCP", "2011-2020"],
+  ["Jesús Sánchez", ["chivas"], ["mex"], "LCP", "2010-2024"],
+  ["Isaac Brizuela", ["toluca", "atlas", "chivas"], ["mex"], "LCMP", "2009-2026"],
+  ["Alexis Vega", ["toluca", "chivas"], ["mex"], "LMP", "2016-2026"],
+  ["Roberto Alvarado", ["chivas", "cruzazul", "pachuca", "necaxa"], ["mex"], "LCMP", "2017-2026"],
+  ["Fernando Beltrán", ["chivas"], ["mex"], "P", "2017-2026"],
+  ["Gilberto Sepúlveda", ["chivas"], ["mex"], "P", "2019-2026"],
+  ["Alan Mozo", ["pumas", "chivas"], ["mex"], "LP", "2017-2026"],
+  ["Érick Gutiérrez", ["pachuca", "chivas"], ["mex"], "LCP", "2014-2026"],
+  ["Víctor Guzmán", ["pachuca", "chivas"], ["mex"], "LCP", "2015-2026"],
+  ["Cade Cowell", ["chivas"], ["usa"], "P", "2024-2026"],
+  ["Armando González", ["chivas"], ["mex"], "P", "2024-2026"],
+  ["Luis Romo", ["queretaro", "cruzazul", "monterrey", "sanluis", "chivas"], ["mex"], "LP", "2018-2026"],
+  ["Benjamín Galindo", ["chivas", "santos", "cruzazul", "pachuca"], ["mex"], "LMP", "1979-2001"],
+  ["Fernando Quirarte", ["chivas", "atlas"], ["mex"], "LMP", "1973-1988"],
+  ["Ignacio Calderón", ["chivas", "atlas"], ["mex"], "LMP", "1962-1980"],
+  ["Salvador Reyes Monteón", ["chivas"], ["mex"], "LCMPGB", "1953-1967"],
+  ["Ramón Ramírez", ["santos", "chivas", "america", "tigres"], ["mex"], "LMP", "1990-2007"],
+  ["Joel Sánchez", ["chivas", "america"], ["mex"], "LMP", "1991-2007"],
+  ["Paulo César Chávez", ["chivas", "monterrey", "toluca", "necaxa"], ["mex"], "LMP", "1993-2012"],
+  ["Gustavo Nápoles", ["chivas", "tigres", "leon", "pachuca"], ["mex"], "LP", "1991-2004"],
+  ["Patricio Araujo", ["chivas", "puebla"], ["mex"], "LP", "2005-2018"],
+  ["Antonio Briseño", ["atlas", "tigres", "chivas", "toluca"], ["mex"], "LCP", "2011-2026"],
+  ["José Juan Macías", ["chivas", "leon", "santos"], ["mex"], "P", "2017-2025"],
+  ["Sabás Ponce", ["chivas"], ["mex"], "LMP", "1956-1975"],
+  ["Jaime Tubau", ["chivas", "cruzazul"], ["mex"], "LP", "1957-1970"],
+  ["Demetrio Madero", ["chivas", "atlante", "puebla"], ["mex"], "LP", "1980-1996"],
+  ["Eduardo de la Torre", ["chivas", "atlante", "puebla", "queretaro"], ["mex"], "LMP", "1981-1997"],
+  ["José Martínez", ["chivas", "tigres"], ["mex"], "LP", "1980-1995"],
+  ["Camilo Romero", ["chivas", "atlante", "necaxa"], ["mex"], "LP", "1990-2002"],
+  ["Luis Michel", ["chivas", "santos", "tijuana"], ["mex"], "LMP", "2003-2018"],
+  ["Miguel Ponce", ["chivas", "necaxa"], ["mex"], "LCP", "2010-2024"],
+  ["Raúl Gudiño", ["chivas", "necaxa"], ["mex"], "EMP", "2014-2025"],
+  ["Ronaldo Cisneros", ["santos", "chivas", "atlante", "queretaro"], ["mex"], "CP", "2017-2026"],
+  ["Yael Padilla", ["chivas"], ["mex"], "P", "2023-2026"],
+
+  // ================= TOLUCA =================
+  ["José Saturnino Cardozo", ["toluca"], ["par"], "LCMPGB", "1994-2005"],
+  ["Antonio Naelson", ["toluca", "queretaro"], ["mex"], "LMP", "1998-2017"],
+  ["Hernán Cristante", ["toluca", "leon"], ["arg"], "LP", "1993-2010"],
+  ["Vicente Sánchez", ["toluca", "america"], ["uru"], "LP", "2001-2012"],
+  ["Paulo da Silva", ["toluca", "pachuca"], ["par"], "LMP", "2003-2017"],
+  ["Alfredo Talavera", ["chivas", "tigres", "toluca", "pumas", "juarez"], ["mex"], "LMP", "2003-2023"],
+  ["Carlos Esquivel", ["toluca", "tigres", "juarez"], ["mex"], "LCP", "2005-2020"],
+  ["Antonio Ríos", ["toluca"], ["mex"], "LP", "2008-2022"],
+  ["Rafael García", ["pumas", "toluca", "cruzazul", "atlas"], ["mex"], "LMP", "1992-2008"],
+  ["Salvador Carmona", ["toluca", "chivas", "cruzazul"], ["mex"], "LCMP", "1993-2007"],
+  ["José Manuel Abundis", ["toluca", "atlante", "pachuca", "queretaro"], ["mex"], "LP", "1992-2007"],
+  ["Fabián Estay", ["toluca", "america", "atlante", "santos"], ["chi"], "LMP", "1995-2004"],
+  ["Carlos María Morales", ["toluca", "atlas", "puebla"], ["uru"], "LPG", "1995-2005"],
+  ["Víctor Ruiz", ["toluca", "necaxa", "cruzazul"], ["mex"], "LP", "1992-2006"],
+  ["Edgar Dueñas", ["toluca", "puebla"], ["mex"], "LP", "2004-2017"],
+  ["Héctor Mancilla", ["toluca", "tigres", "atlas"], ["chi"], "LPB", "2006-2015"],
+  ["Néstor Calderón", ["toluca", "pachuca", "santos", "chivas", "pumas"], ["mex"], "LP", "2008-2019"],
+  ["Tiago Volpi", ["queretaro", "toluca"], ["bra"], "P", "2015-2025"],
+  ["Marcel Ruiz", ["queretaro", "tijuana", "toluca"], ["mex"], "LP", "2018-2026"],
+  ["Paulinho", ["toluca"], ["por"], "LEPB", "2024-2026"],
+  ["Jean Meneses", ["leon", "toluca"], ["chi"], "LP", "2018-2024"],
+  ["Claudio Baeza", ["necaxa", "toluca"], ["chi"], "P", "2019-2025"],
+  ["Maximiliano Araújo", ["puebla", "toluca"], ["uru"], "PM", "2020-2024"],
+  ["Jesús Angulo", ["tijuana", "necaxa", "chivas", "leon", "toluca"], ["mex"], "LP", "2017-2026"],
+  ["Héctor Herrera", ["pachuca", "toluca"], ["mex"], "LEMP", "2011-2026"],
+  ["Federico Pereira", ["toluca"], ["uru"], "LP", "2024-2026"],
+  ["Luan Garcia", ["toluca"], ["bra"], "LP", "2024-2026"],
+  ["Jesús Gallardo", ["pumas", "monterrey", "toluca"], ["mex"], "LCMP", "2014-2026"],
+  ["Bruno Méndez", ["toluca"], ["uru"], "LP", "2024-2026"],
+  ["Helinho", ["toluca"], ["bra"], "LP", "2024-2026"],
+  ["Amaury Morales", ["toluca"], ["mex"], "LP", "2024-2026"],
+  ["Diego González", ["toluca"], ["par"], "LP", "2024-2026"],
+  ["Manuel de la Torre", ["toluca", "pachuca", "puebla"], ["mex"], "LP", "2002-2017"],
+  ["Omar Arellano", ["chivas", "monterrey", "toluca", "pachuca"], ["mex"], "LP", "2007-2019"],
+  ["Raúl Nava", ["toluca", "tijuana"], ["mex"], "LP", "2010-2022"],
+  ["Fernando Uribe", ["toluca"], ["col"], "P", "2015-2018"],
+  ["Enrique Triverio", ["toluca", "queretaro"], ["arg"], "P", "2015-2022"],
+  ["Diego Rigonato", ["toluca"], ["bra"], "P", "2019-2021"],
+  ["Alexis Canelo", ["puebla", "toluca", "tijuana"], ["arg"], "PB", "2016-2024"],
+
+  // ================= CRUZ AZUL =================
+  ["Miguel Marín", ["cruzazul"], ["arg"], "LCP", "1971-1981"],
+  ["Carlos Hermosillo", ["america", "cruzazul", "necaxa", "chivas"], ["mex"], "LMPGB", "1983-2001"],
+  ["Fernando Bustos", ["cruzazul", "necaxa"], ["mex"], "LCP", "1963-1979"],
+  ["Ignacio Flores", ["cruzazul"], ["mex"], "LCP", "1972-1990"],
+  ["Javier Guzmán", ["cruzazul", "pumas"], ["mex"], "LCMP", "1968-1978"],
+  ["Alberto Quintano", ["cruzazul"], ["chi"], "LCMP", "1971-1977"],
+  ["Eladio Vera", ["cruzazul"], ["par"], "LCP", "1971-1977"],
+  ["Octavio Muciño", ["cruzazul", "chivas"], ["mex"], "LCP", "1969-1974"],
+  ["Guillermo Mendizábal", ["cruzazul", "chivas"], ["mex"], "LCMP", "1974-1991"],
+  ["Horacio López Salgado", ["america", "cruzazul", "necaxa"], ["mex"], "LCPG", "1967-1983"],
+  ["Juan Reynoso", ["cruzazul", "necaxa"], ["per"], "LCP", "1994-2004"],
+  ["Francisco Palencia", ["cruzazul", "chivas", "pumas"], ["mex"], "LCMP", "1994-2011"],
+  ["Óscar Pérez", ["cruzazul", "tigres", "necaxa", "sanluis", "pachuca"], ["mex"], "LCMP", "1993-2019"],
+  ["Melvin Brown", ["cruzazul", "puebla", "tijuana"], ["mex"], "MP", "2001-2012"],
+  ["César Delgado", ["cruzazul", "monterrey"], ["arg"], "LCP", "2003-2014"],
+  ["Aarón Galindo", ["cruzazul", "chivas", "santos", "toluca"], ["mex"], "LEP", "2002-2018"],
+  ["Sebastián Abreu", ["tijuana", "cruzazul", "america", "monterrey", "sanluis", "tigres"], ["uru"], "MPB", "1999-2008"],
+  ["Christian Giménez", ["america", "pachuca", "cruzazul"], ["arg"], "LCP", "1998-2018"],
+  ["Gerardo Torrado", ["pumas", "cruzazul"], ["mex"], "LEMP", "1997-2016"],
+  ["José de Jesús Corona", ["atlas", "cruzazul", "queretaro", "tijuana"], ["mex"], "LCMP", "2003-2024"],
+  ["Julio César Domínguez", ["cruzazul", "sanluis"], ["mex"], "LP", "2006-2024"],
+  ["Emanuel Villa", ["atlas", "cruzazul", "pumas", "tigres", "queretaro"], ["arg"], "PB", "2006-2018"],
+  ["Javier Aquino", ["cruzazul", "tigres"], ["mex"], "LCEMP", "2010-2026"],
+  ["Néstor Araujo", ["cruzazul", "santos", "america"], ["mex"], "LEMP", "2010-2026"],
+  ["Mariano Pavone", ["cruzazul"], ["arg"], "CP", "2012-2014"],
+  ["Joao Rojas", ["cruzazul"], ["ecu"], "CMP", "2010-2017"],
+  ["Roque Santa Cruz", ["cruzazul"], ["par"], "EMP", "2015"],
+  ["Édgar Méndez", ["cruzazul", "necaxa"], ["esp"], "EP", "2017-2024"],
+  ["Iván Marcone", ["cruzazul"], ["arg"], "P", "2018"],
+  ["Jonathan Rodríguez", ["santos", "cruzazul", "america"], ["uru"], "LPB", "2016-2024"],
+  ["Ignacio Rivero", ["tijuana", "cruzazul"], ["uru"], "LCP", "2017-2026"],
+  ["Juan Escobar", ["cruzazul", "toluca"], ["par"], "LP", "2019-2025"],
+  ["Pablo Aguilar", ["sanluis", "tijuana", "america", "cruzazul"], ["par"], "LCP", "2009-2023"],
+  ["Santiago Giménez", ["cruzazul"], ["mex"], "LEMP", "2019-2022"],
+  ["Yoshimar Yotún", ["cruzazul"], ["per"], "LMP", "2019-2021"],
+  ["Elías Hernández", ["pachuca", "tigres", "leon", "cruzazul"], ["mex"], "LP", "2007-2025"],
+  ["Rafael Baca", ["cruzazul"], ["mex"], "LP", "2014-2023"],
+  ["Adrián Aldrete", ["america", "santos", "cruzazul", "pumas"], ["mex"], "LP", "2006-2024"],
+  ["Carlos Rodríguez", ["monterrey", "cruzazul"], ["mex"], "LCMP", "2018-2026"],
+  ["Uriel Antuna", ["santos", "chivas", "cruzazul", "tigres"], ["mex"], "EMP", "2017-2026"],
+  ["Erik Lira", ["pumas", "cruzazul", "necaxa"], ["mex"], "LP", "2020-2026"],
+  ["Kevin Mier", ["cruzazul"], ["col"], "CP", "2024-2026"],
+  ["Willer Ditta", ["cruzazul"], ["col"], "CP", "2023-2026"],
+  ["Gonzalo Piovi", ["cruzazul"], ["arg"], "CP", "2024-2026"],
+  ["Rodolfo Rotondi", ["cruzazul"], ["arg"], "CP", "2022-2026"],
+  ["Lorenzo Faravelli", ["cruzazul"], ["arg"], "CP", "2024-2026"],
+  ["Ángel Sepúlveda", ["chivas", "cruzazul", "queretaro", "atlante", "necaxa"], ["mex"], "LCP", "2010-2026"],
+  ["Giorgos Giakoumakis", ["cruzazul"], ["gre"], "ECP", "2024-2025"],
+  ["Luka Romero", ["cruzazul"], ["arg"], "ECP", "2025-2026"],
+  ["Jesús Orozco Chiquete", ["chivas", "cruzazul"], ["mex"], "CP", "2021-2026"],
+  ["Mateo Levy", ["cruzazul"], ["mex"], "CP", "2023-2026"],
+  ["Andrés Montaño", ["cruzazul"], ["mex"], "CP", "2021-2026"],
+  ["Héctor Pulido", ["cruzazul"], ["mex"], "LCMP", "1965-1977"],
+  ["Cesáreo Victorino", ["pachuca", "cruzazul", "pumas", "puebla"], ["mex"], "LP", "1997-2010"],
+  ["Richard Núñez", ["cruzazul", "pachuca", "america"], ["uru"], "CP", "2005-2008"],
+  ["Teófilo Gutiérrez", ["cruzazul"], ["col"], "CMP", "2013"],
+  ["Marco Angulo", ["cruzazul"], ["ecu"], "P", "2016"],
+
+  // ================= PUMAS =================
+  ["Hugo Sánchez", ["pumas", "america", "atlante"], ["mex"], "LCEMPGB", "1976-1997"],
+  ["Jorge Campos", ["pumas", "atlante", "tigres", "puebla"], ["mex"], "LMP", "1988-2004"],
+  ["Claudio Suárez", ["pumas", "chivas", "tigres"], ["mex"], "LMP", "1988-2010"],
+  ["Manuel Negrete", ["pumas", "monterrey", "atlante"], ["mex"], "LCMP", "1979-1996"],
+  ["Evanivaldo Castro Cabinho", ["pumas", "atlante", "leon", "tigres"], ["bra"], "LPGB", "1974-1987"],
+  ["Ricardo Ferretti", ["atlas", "pumas", "monterrey", "toluca"], ["bra"], "LCGP", "1977-1991"],
+  ["Luis Flores", ["pumas", "cruzazul", "atlas", "chivas"], ["mex"], "LEMPB", "1979-1995"],
+  ["Miguel España", ["pumas", "tigres", "santos"], ["mex"], "LMP", "1983-2003"],
+  ["Alberto García Aspe", ["pumas", "necaxa", "america", "puebla"], ["mex"], "LMP", "1984-2002"],
+  ["Luis García Postigo", ["pumas", "america", "chivas"], ["mex"], "LMPGB", "1986-2001"],
+  ["Sergio Bernal", ["pumas", "puebla"], ["mex"], "LP", "1989-2010"],
+  ["Darío Verón", ["pumas"], ["par"], "LMP", "2003-2017"],
+  ["Leandro Augusto", ["leon", "pumas", "tijuana", "puebla"], ["mex"], "LP", "2000-2014"],
+  ["Joaquín Beltrán", ["pumas", "necaxa", "cruzazul", "queretaro"], ["mex"], "LP", "1996-2010"],
+  ["Israel Castro", ["pumas", "cruzazul", "chivas"], ["mex"], "LMP", "2002-2018"],
+  ["Jaime Lozano", ["pumas", "tigres", "cruzazul"], ["mex"], "LP", "1998-2013"],
+  ["Aílton da Silva", ["atlas", "leon", "pumas", "sanluis"], ["bra"], "LP", "2000-2012"],
+  ["Francisco Fonseca", ["pumas", "cruzazul", "tigres", "atlante"], ["mex"], "LMP", "2000-2014"],
+  ["Bruno Marioni", ["pumas", "toluca", "atlas", "pachuca"], ["arg"], "LPB", "2004-2009"],
+  ["Ismael Íñiguez", ["pumas", "necaxa", "tijuana"], ["mex"], "LP", "2003-2014"],
+  ["Braulio Luna", ["pumas", "america", "necaxa", "sanluis"], ["mex"], "LMP", "1994-2014"],
+  ["Héctor Moreno", ["pumas", "monterrey"], ["mex"], "LEMP", "2006-2026"],
+  ["Efraín Juárez", ["pumas", "america", "monterrey"], ["mex"], "LEMP", "2008-2019"],
+  ["Pablo Barrera", ["pumas", "cruzazul", "monterrey", "sanluis", "queretaro"], ["mex"], "LEMP", "2005-2026"],
+  ["Javier Cortés", ["pumas", "santos", "sanluis"], ["mex"], "LP", "2008-2020"],
+  ["Martín Bravo", ["pumas", "leon"], ["arg"], "LP", "2008-2018"],
+  ["Dante López", ["pumas"], ["par"], "LP", "2008-2016"],
+  ["Marco Antonio Palacios", ["pumas"], ["mex"], "LP", "2003-2015"],
+  ["Alejandro Palacios", ["pumas", "sanluis"], ["mex"], "LP", "2003-2019"],
+  ["Carlos González", ["necaxa", "pumas", "tigres", "toluca", "tijuana"], ["par"], "LP", "2017-2025"],
+  ["Juan Ignacio Dinenno", ["pumas"], ["arg"], "P", "2020-2023"],
+  ["Nicolás Freire", ["pumas"], ["arg"], "P", "2019-2023"],
+  ["Johan Vásquez", ["monterrey", "pumas"], ["mex"], "EMP", "2018-2026"],
+  ["César Huerta", ["chivas", "pumas"], ["mex"], "LP", "2018-2026"],
+  ["Guillermo Martínez", ["puebla", "pumas"], ["mex"], "P", "2014-2026"],
+  ["Julio González", ["santos", "pumas", "puebla"], ["mex"], "P", "2014-2026"],
+  ["Lisandro Magallán", ["pumas"], ["arg"], "EP", "2023-2026"],
+  ["Nathan Silva", ["pumas"], ["bra"], "P", "2023-2026"],
+  ["Jorge Ruvalcaba", ["pumas"], ["mex"], "EP", "2022-2026"],
+  ["Piero Quispe", ["pumas"], ["per"], "P", "2024-2026"],
+  ["José Caicedo", ["pumas"], ["col"], "P", "2022-2026"],
+  ["Rubén Duarte", ["pumas"], ["esp"], "EP", "2024-2026"],
+  ["Adalberto Carrasquilla", ["pumas"], ["pan"], "P", "2025-2026"],
+  ["Keylor Navas", ["pumas"], ["crc"], "EMP", "2025-2026"],
+  ["Olaf Heredia", ["pumas", "tigres", "monterrey"], ["mex"], "LP", "1977-1993"],
+  ["Carlos Campos", ["pumas", "cruzazul"], ["mex"], "LP", "1988-2001"],
+  ["David Patiño", ["pumas", "monterrey"], ["mex"], "LP", "1988-1998"],
+  ["Ignacio Scocco", ["pumas", "toluca"], ["arg"], "P", "2006-2011"],
+  ["Eduardo Salvio", ["pumas"], ["arg"], "EMP", "2022-2024"],
+  ["Ulises Rivas", ["santos", "pumas"], ["mex"], "LP", "2016-2026"],
+  ["Rodrigo López", ["queretaro", "pumas"], ["mex"], "P", "2019-2026"],
+
+  // ================= TIGRES =================
+  ["André-Pierre Gignac", ["tigres"], ["fra"], "LCEMPGB", "2015-2026"],
+  ["Nahuel Guzmán", ["tigres"], ["arg"], "LCMP", "2014-2026"],
+  ["Guido Pizarro", ["tigres"], ["arg"], "LCEP", "2013-2025"],
+  ["Rafael Carioca", ["tigres"], ["bra"], "LCP", "2017-2025"],
+  ["Jesús Dueñas", ["tigres", "juarez", "cruzazul"], ["mex"], "LCP", "2011-2024"],
+  ["Hugo Ayala", ["atlas", "tigres", "sanluis"], ["mex"], "LCMP", "2006-2023"],
+  ["Jorge Torres Nilo", ["atlas", "tigres", "toluca"], ["mex"], "LCMP", "2006-2022"],
+  ["Juninho", ["tigres"], ["bra"], "LP", "2010-2018"],
+  ["Lucas Lobos", ["tigres", "toluca"], ["arg"], "LP", "2008-2015"],
+  ["Damián Álvarez", ["atlas", "tigres", "pachuca"], ["mex"], "LCP", "1998-2017"],
+  ["Walter Gaitán", ["tigres"], ["arg"], "PB", "2002-2007"],
+  ["Tomás Boy", ["tigres"], ["mex"], "LMP", "1975-1988"],
+  ["Osvaldo Batocletti", ["tigres"], ["arg"], "LP", "1977-1984"],
+  ["Gerónimo Barbadillo", ["tigres"], ["per"], "LMP", "1975-1982"],
+  ["Mateo Bravo", ["tigres"], ["mex"], "LP", "1974-1986"],
+  ["Claudio Núñez", ["tigres", "puebla"], ["chi"], "P", "1996-2003"],
+  ["Néstor Silvera", ["tigres", "pachuca"], ["arg"], "LPB", "2003-2007"],
+  ["Eduardo Vargas", ["tigres"], ["chi"], "LEP", "2017-2020"],
+  ["Enner Valencia", ["pachuca", "tigres"], ["ecu"], "LEMPB", "2014-2020"],
+  ["Carlos Salcedo", ["chivas", "tigres", "juarez", "cruzazul", "monterrey"], ["mex"], "LEMP", "2015-2026"],
+  ["Diego Reyes", ["america", "tigres", "queretaro"], ["mex"], "LEMP", "2010-2026"],
+  ["Luis Rodríguez", ["monterrey", "sanluis", "tigres", "juarez", "pachuca"], ["mex"], "LCP", "2010-2026"],
+  ["Sebastián Córdova", ["america", "necaxa", "tigres"], ["mex"], "LP", "2018-2026"],
+  ["Diego Lainez", ["america", "tigres"], ["mex"], "LEMP", "2017-2026"],
+  ["Fernando Gorriarán", ["santos", "tigres"], ["uru"], "LP", "2019-2026"],
+  ["Juan Brunetta", ["santos", "tigres"], ["arg"], "P", "2022-2026"],
+  ["Nicolás Ibáñez", ["sanluis", "pachuca", "tigres"], ["arg"], "LPB", "2019-2026"],
+  ["Ozziel Herrera", ["atlas", "tigres"], ["mex"], "LP", "2018-2026"],
+  ["Juan Pablo Vigón", ["atlas", "sanluis", "pumas", "tigres"], ["mex"], "LP", "2012-2026"],
+  ["Marcelo Flores", ["tigres"], ["mex"], "EP", "2023-2026"],
+  ["Joaquim Pereira", ["tigres"], ["bra"], "P", "2024-2026"],
+  ["Florian Thauvin", ["tigres"], ["fra"], "EMP", "2021-2023"],
+  ["Rafael Sobis", ["tigres"], ["bra"], "P", "2015-2016"],
+  ["Jürgen Damm", ["pachuca", "tigres", "america", "sanluis"], ["mex"], "LP", "2013-2025"],
+  ["Ismael Sosa", ["pumas", "tigres", "leon", "pachuca"], ["arg"], "LP", "2014-2023"],
+  ["Luis Quiñones", ["pumas", "tigres", "toluca", "puebla"], ["col"], "LCP", "2016-2026"],
+  ["Igor Lichnovsky", ["necaxa", "cruzazul", "tigres", "america"], ["chi"], "LP", "2014-2026"],
+  ["Aldo de Nigris", ["tigres", "monterrey", "chivas"], ["mex"], "LCMP", "2002-2017"],
+  ["Fernando Navarro", ["atlante", "tigres", "leon", "pachuca", "toluca", "puebla"], ["mex"], "LCP", "2008-2024"],
+  ["Leonardo Fernández", ["tigres", "toluca"], ["uru"], "LP", "2020-2023"],
+  ["Luis Hernández", ["necaxa", "tigres", "america", "puebla"], ["mex"], "LMPGB", "1990-2005"],
+  ["Javier Lozano", ["tigres", "pachuca"], ["mex"], "LP", "1991-2004"],
+  ["Carlos Muñoz", ["tigres", "puebla", "atlante"], ["mex"], "LP", "1992-2004"],
+  ["Ildefonso Villalobos", ["tigres", "atlas"], ["mex"], "LP", "1997-2008"],
+  ["Francisco Acuña", ["tigres", "puebla"], ["mex"], "LP", "2006-2018"],
+  ["Carlos Augusto Morales", ["monterrey", "tigres", "pachuca"], ["mex"], "LP", "1999-2013"],
+  ["Samir de Souza", ["tigres"], ["bra"], "LP", "2022-2025"],
+  ["Rómulo Zwarg", ["tigres"], ["bra"], "P", "2025-2026"],
+
+  // ================= MONTERREY =================
+  ["Jesús Arellano", ["monterrey", "chivas"], ["mex"], "LMP", "1993-2011"],
+  ["Humberto Suazo", ["monterrey"], ["chi"], "LCMPGB", "2007-2014"],
+  ["Rogelio Funes Mori", ["monterrey", "pumas"], ["arg"], "LCMPGB", "2015-2026"],
+  ["José María Basanta", ["monterrey"], ["arg"], "LCMP", "2008-2020"],
+  ["Luis Ernesto Pérez", ["monterrey", "necaxa", "queretaro"], ["mex"], "LCMP", "2003-2017"],
+  ["Jonathan Orozco", ["monterrey", "santos", "tijuana"], ["mex"], "LCP", "2005-2023"],
+  ["Walter Ayoví", ["monterrey", "pachuca"], ["ecu"], "LCMP", "2009-2017"],
+  ["Severo Meza", ["monterrey", "queretaro", "necaxa"], ["mex"], "LCP", "2005-2018"],
+  ["Jesús Zavala", ["monterrey", "puebla"], ["mex"], "LCMP", "2006-2019"],
+  ["Neri Cardozo", ["monterrey", "queretaro"], ["arg"], "LCP", "2010-2020"],
+  ["Dorlan Pabón", ["monterrey"], ["col"], "LCP", "2013-2021"],
+  ["César Montes", ["monterrey"], ["mex"], "LCEMP", "2015-2026"],
+  ["Carlos Sánchez", ["puebla", "monterrey"], ["uru"], "LCP", "2013-2018"],
+  ["Guillermo Franco", ["monterrey"], ["arg"], "LMPB", "2002-2005"],
+  ["Mario de Souza Mota", ["monterrey", "puebla"], ["bra"], "PGB", "1984-1992"],
+  ["Francisco Javier Cruz", ["monterrey", "tigres", "atlante", "pachuca"], ["mex"], "MP", "1984-1999"],
+  ["Sergio Verdirame", ["monterrey", "cruzazul"], ["arg"], "LP", "1992-1999"],
+  ["Nicolás Sánchez", ["monterrey"], ["arg"], "LCP", "2017-2021"],
+  ["Marcelo Barovero", ["necaxa", "monterrey"], ["arg"], "LCP", "2016-2020"],
+  ["Leonel Vangioni", ["monterrey"], ["arg"], "LCP", "2017-2020"],
+  ["Maximiliano Meza", ["monterrey"], ["arg"], "LCMP", "2019-2024"],
+  ["Vincent Janssen", ["monterrey"], ["ned"], "LEMP", "2019-2023"],
+  ["Matías Kranevitter", ["monterrey"], ["arg"], "CP", "2020-2021"],
+  ["Stefan Medina", ["pachuca", "monterrey"], ["col"], "LCMP", "2014-2026"],
+  ["Jesús Corona", ["monterrey"], ["mex"], "LEMP", "2012-2026"],
+  ["Sergio Ramos", ["monterrey"], ["esp"], "LEMP", "2025-2026"],
+  ["Lucas Ocampos", ["monterrey"], ["arg"], "EMP", "2024-2026"],
+  ["Óliver Torres", ["monterrey"], ["esp"], "EMP", "2024-2026"],
+  ["Sergio Canales", ["monterrey"], ["esp"], "EMP", "2023-2026"],
+  ["Gerardo Arteaga", ["santos", "monterrey"], ["mex"], "LEMP", "2016-2026"],
+  ["Érick Aguirre", ["pachuca", "monterrey"], ["mex"], "LP", "2016-2026"],
+  ["Luis Reyes", ["atlas", "america", "sanluis", "monterrey"], ["mex"], "LP", "2016-2026"],
+  ["Ricardo Chávez", ["sanluis", "monterrey"], ["mex"], "P", "2019-2026"],
+  ["Fidel Ambríz", ["leon", "monterrey"], ["mex"], "LP", "2019-2026"],
+  ["Esteban Andrada", ["monterrey"], ["arg"], "CP", "2021-2026"],
+  ["Edwin Cardona", ["monterrey", "pachuca", "tijuana"], ["col"], "CP", "2015-2022"],
+  ["Celso Ortiz", ["monterrey", "pachuca"], ["par"], "LCMP", "2016-2024"],
+
+  // ================= SANTOS =================
+  ["Jared Borgetti", ["atlas", "santos", "cruzazul", "monterrey", "puebla", "leon"], ["mex"], "LMPGB", "1994-2010"],
+  ["Rodrigo Ruiz", ["puebla", "santos", "tijuana"], ["chi"], "LP", "1994-2013"],
+  ["Daniel Ludueña", ["santos", "pumas"], ["arg"], "LP", "2004-2017"],
+  ["Matías Vuoso", ["santos", "america", "atlas", "chivas", "cruzazul"], ["arg"], "LPB", "2003-2017"],
+  ["Carlos Darwin Quintero", ["santos", "america", "tijuana"], ["col"], "LCP", "2009-2020"],
+  ["Juan Pablo Rodríguez", ["atlas", "chivas", "santos", "pumas"], ["mex"], "LP", "1997-2018"],
+  ["Héctor Adomaitis", ["santos", "cruzazul", "puebla"], ["arg"], "LCP", "1993-2002"],
+  ["Gabriel Caballero", ["santos", "pachuca", "atlas", "puebla", "atlante"], ["mex"], "LCP", "1993-2009"],
+  ["Fernando Arce", ["atlas", "santos", "tijuana", "chivas"], ["mex"], "LMP", "2000-2017"],
+  ["Iván Estrada", ["santos", "pachuca", "tigres"], ["mex"], "LP", "2004-2017"],
+  ["Rafael Figueroa", ["santos"], ["mex"], "LP", "2005-2015"],
+  ["Julio Furch", ["santos", "atlas"], ["arg"], "LP", "2015-2023"],
+  ["Carlos Izquierdoz", ["santos"], ["arg"], "LP", "2014-2018"],
+  ["José Abella", ["santos", "atlas", "juarez"], ["mex"], "LP", "2013-2026"],
+  ["Jorge Sánchez", ["santos", "america", "cruzazul"], ["mex"], "LEMP", "2016-2026"],
+  ["Carlos Acevedo", ["santos"], ["mex"], "P", "2016-2026"],
+  ["Brian Lozano", ["america", "santos", "atlas"], ["uru"], "LP", "2016-2024"],
+  ["Harold Preciado", ["santos"], ["col"], "PB", "2022-2024"],
+  ["Félix Torres", ["santos"], ["ecu"], "MP", "2019-2023"],
+  ["Matheus Dória", ["santos", "atlas"], ["bra"], "P", "2018-2026"],
+  ["Omar Campos", ["santos", "cruzazul"], ["mex"], "P", "2021-2026"],
+  ["Eduardo Aguirre", ["santos", "atlas"], ["mex"], "P", "2019-2026"],
+  ["Anderson Santamaría", ["puebla", "atlas", "santos"], ["per"], "LP", "2018-2026"],
+  ["José Juan Vázquez", ["leon", "chivas", "santos", "toluca"], ["mex"], "LMP", "2011-2023"],
+  ["Jesús Molina", ["tigres", "america", "chivas", "santos", "pumas"], ["mex"], "LCMP", "2007-2024"],
+  ["Osmar Mares", ["santos", "america"], ["mex"], "LCP", "2009-2019"],
+  ["Marc Crosas", ["santos", "cruzazul"], ["esp"], "ELP", "2012-2016"],
+  ["Javier Orozco", ["cruzazul", "santos"], ["mex"], "CP", "2005-2018"],
+  ["Ayrton Preciado", ["santos"], ["ecu"], "LMP", "2018-2022"],
+
+  // ================= LEÓN =================
+  ["Mauro Boselli", ["leon", "queretaro"], ["arg"], "LPB", "2013-2019"],
+  ["Luis Montes", ["leon", "pachuca"], ["mex"], "LCP", "2006-2024"],
+  ["Aldo Rocha", ["leon", "monterrey", "atlas"], ["mex"], "LP", "2013-2026"],
+  ["Andrés Mosquera", ["leon", "toluca", "juarez"], ["col"], "LP", "2017-2025"],
+  ["Rodolfo Cota", ["pachuca", "chivas", "leon", "america"], ["mex"], "LCMP", "2007-2026"],
+  ["Rafael Márquez", ["atlas", "leon"], ["mex"], "LEMP", "1996-2018"],
+  ["Andrés Guardado", ["atlas", "leon"], ["mex"], "LEMP", "2005-2025"],
+  ["James Rodríguez", ["leon"], ["col"], "EMP", "2025-2026"],
+  ["Alfonso Blanco", ["leon", "pachuca"], ["mex"], "LCP", "2007-2026"],
+  ["Steven Mendoza", ["leon", "santos"], ["col"], "P", "2019-2026"],
+  ["Emmanuel Gigliotti", ["toluca", "leon"], ["arg"], "LP", "2019-2021"],
+  ["Eduardo López", ["chivas", "pachuca", "leon"], ["mex"], "LP", "2016-2025"],
+  ["Edwin Hernández", ["sanluis", "chivas", "leon", "pachuca"], ["mex"], "LP", "2005-2021"],
+  ["Miguel Sabah", ["chivas", "cruzazul", "monterrey", "leon"], ["mex"], "LP", "2000-2016"],
+  ["William Yarbrough", ["leon", "pachuca"], ["usa"], "LP", "2012-2025"],
+  ["Ignacio González", ["leon"], ["mex"], "LP", "2005-2022"],
+  ["Carlos Peña", ["pachuca", "leon", "chivas", "cruzazul", "necaxa"], ["mex"], "LMP", "2010-2024"],
+  ["Ángel Mena", ["cruzazul", "leon", "pachuca"], ["ecu"], "LPB", "2017-2025"],
+  ["Joel Campbell", ["leon", "monterrey"], ["crc"], "MP", "2011-2025"],
+  ["Yairo Moreno", ["leon", "pachuca"], ["col"], "LP", "2018-2025"],
+  ["Stiven Barreiro", ["leon", "atlas"], ["col"], "LP", "2016-2026"],
+  ["Adonis Frías", ["leon"], ["arg"], "LP", "2023-2026"],
+  ["Salvador Reyes", ["puebla", "america", "leon"], ["mex"], "LP", "2019-2026"],
+  ["Sebastián Maz", ["leon"], ["uru"], "LP", "2012-2015"],
+  ["Matías Britos", ["leon", "pumas"], ["uru"], "LP", "2012-2018"],
+  ["Osvaldo Rodríguez", ["pachuca", "leon"], ["mex"], "LCP", "2015-2026"],
+  ["Iván Moreno", ["america", "puebla", "leon"], ["mex"], "P", "2019-2026"],
+
+  // ================= PACHUCA =================
+  ["Miguel Calero", ["pachuca"], ["col"], "LCP", "2000-2011"],
+  ["Andrés Chitiva", ["pachuca", "america", "atlas"], ["col"], "LCP", "2001-2011"],
+  ["Franco Jara", ["pachuca"], ["arg"], "LCP", "2015-2020"],
+  ["Hirving Lozano", ["pachuca"], ["mex"], "LCEMP", "2014-2017"],
+  ["Aquivaldo Mosquera", ["pachuca", "america"], ["col"], "LCP", "2005-2016"],
+  ["Leobardo López", ["leon", "pachuca", "monterrey"], ["mex"], "LCP", "2005-2018"],
+  ["Fausto Pinto", ["pachuca", "cruzazul", "toluca"], ["mex"], "LCP", "2001-2018"],
+  ["Jaime Correa", ["pachuca", "sanluis", "necaxa"], ["mex"], "LCP", "2001-2015"],
+  ["Juan Carlos Cacho", ["cruzazul", "pachuca", "pumas", "toluca"], ["mex"], "LCP", "2000-2015"],
+  ["Luis Ángel Landín", ["pachuca", "cruzazul", "atlante"], ["mex"], "LCP", "2004-2017"],
+  ["Gerardo Rodríguez", ["pachuca", "toluca"], ["mex"], "LCP", "2004-2017"],
+  ["Sergio Santana", ["pachuca", "chivas", "toluca", "monterrey", "atlas", "queretaro"], ["mex"], "LCP", "2000-2016"],
+  ["Edgar Benítez", ["pachuca", "toluca", "queretaro"], ["par"], "LMP", "2009-2018"],
+  ["Segundo Castillo", ["pachuca", "puebla"], ["ecu"], "EMP", "2011-2013"],
+  ["Óscar Murillo", ["pachuca"], ["col"], "LCMP", "2016-2023"],
+  ["Gustavo Cabral", ["pachuca"], ["arg"], "LCEP", "2019-2026"],
+  ["Jorge Hernández", ["pachuca", "queretaro"], ["mex"], "LCP", "2010-2024"],
+  ["Luis Chávez", ["tijuana", "pachuca"], ["mex"], "LMP", "2014-2023"],
+  ["Romario Ibarra", ["pachuca"], ["ecu"], "LMP", "2019-2023"],
+  ["Salomón Rondón", ["pachuca"], ["ven"], "CEPB", "2024-2026"],
+  ["Oussama Idrissi", ["pachuca"], ["mar"], "CEP", "2023-2026"],
+  ["Nelson Deossa", ["pachuca", "monterrey"], ["col"], "CP", "2024-2026"],
+  ["Elías Montiel", ["pachuca"], ["mex"], "CP", "2023-2026"],
+  ["Carlos Moreno", ["pachuca"], ["mex"], "LCP", "2019-2026"],
+  ["Bryan González", ["pachuca", "chivas"], ["mex"], "LCP", "2020-2026"],
+  ["John Kennedy", ["pachuca"], ["bra"], "P", "2025-2026"],
+  ["Hérculez Gómez", ["pachuca", "puebla", "santos", "tijuana"], ["usa"], "LMP", "2010-2016"],
+  ["Pablo López", ["pachuca", "toluca", "necaxa"], ["arg"], "LCP", "2005-2016"],
+  ["Marco Bueno", ["pachuca", "leon", "queretaro"], ["mex"], "LP", "2011-2021"],
+
+  // ================= ATLAS =================
+  ["Camilo Vargas", ["atlas"], ["col"], "LMP", "2019-2026"],
+  ["Hugo Nervo", ["santos", "atlas"], ["arg"], "LP", "2018-2026"],
+  ["Jeremy Márquez", ["atlas"], ["mex"], "LP", "2020-2026"],
+  ["Diego Cocca", ["atlas", "queretaro"], ["arg"], "P", "1999-2005"],
+  ["Daniel Osorno", ["atlas", "monterrey", "puebla"], ["mex"], "MP", "1997-2011"],
+  ["Juan Carlos Medina", ["atlas", "america", "monterrey", "sanluis", "tijuana"], ["mex"], "LMP", "2003-2018"],
+  ["Miguel Zepeda", ["atlas", "toluca", "cruzazul"], ["mex"], "P", "1995-2012"],
+  ["Édgar Castillo", ["atlas", "america", "tijuana", "monterrey", "juarez"], ["usa"], "LP", "2005-2022"],
+  ["Jesús Angulo (Atlas)", ["atlas", "chivas", "toluca"], ["mex"], "LP", "2016-2026"],
+  ["José Guadalupe Rodríguez", ["atlas"], ["mex"], "MP", "1975-1988"],
+  ["Erick Aguirre (Atlas)", ["atlas", "pachuca", "monterrey"], ["mex"], "LP", "2014-2026"],
+
+  // ================= NECAXA =================
+  ["Álex Aguinaga", ["necaxa", "cruzazul"], ["ecu"], "LP", "1989-2004"],
+  ["Ignacio Ambriz", ["necaxa", "atlante", "leon", "puebla"], ["mex"], "LMP", "1983-2001"],
+  ["Sergio Zárate", ["puebla", "necaxa"], ["arg"], "LPB", "1991-1998"],
+  ["Alfredo Moreno", ["necaxa", "sanluis", "atlas", "tijuana"], ["arg"], "PB", "2001-2016"],
+  ["Diber Cambindo", ["necaxa", "cruzazul"], ["col"], "PB", "2023-2026"],
+  ["José Paradela", ["cruzazul", "necaxa"], ["arg"], "LP", "2024-2026"],
+  ["Agustín Palavecino", ["necaxa"], ["arg"], "P", "2024-2026"],
+  ["Nicolás Sánchez (Necaxa)", ["necaxa", "monterrey"], ["arg"], "LCP", "2014-2021"],
+  ["Édgar Méndez (Necaxa)", ["cruzazul", "necaxa"], ["esp"], "EP", "2017-2024"],
+  ["Matías Fernández", ["necaxa"], ["chi"], "EMP", "2017-2019"],
+  ["Facundo Batista", ["necaxa"], ["uru"], "P", "2022-2025"],
+
+  // ================= PUEBLA =================
+  ["Carlos Poblete", ["puebla"], ["chi"], "LCP", "1986-1996"],
+  ["Jorge Aravena", ["puebla"], ["chi"], "LPB", "1988-1991"],
+  ["Pablo Larios", ["cruzazul", "puebla"], ["mex"], "LCMP", "1980-1998"],
+  ["Roberto Ruiz Esparza", ["puebla", "tigres", "necaxa"], ["mex"], "LCP", "1983-2001"],
+  ["Marcelino Bernal", ["cruzazul", "puebla", "toluca", "monterrey", "pachuca", "pumas"], ["mex"], "LMP", "1983-2002"],
+  ["Lucas Cavallini", ["puebla", "tijuana"], ["can"], "MP", "2017-2026"],
+  ["Diego de Buen", ["pumas", "puebla", "tijuana", "santos"], ["mex"], "LP", "2011-2026"],
+  ["Emiliano Gómez", ["puebla"], ["uru"], "P", "2024-2026"],
+  ["Facundo Waller", ["pumas", "sanluis", "puebla"], ["uru"], "P", "2020-2026"],
+  ["Antony Silva", ["puebla"], ["par"], "MP", "2021-2023"],
+  ["Christian Tabó", ["atlas", "puebla", "cruzazul", "pumas"], ["uru"], "LP", "2018-2026"],
+
+  // ================= TIJUANA =================
+  ["Cirilo Saucedo", ["leon", "tigres", "tijuana", "juarez"], ["mex"], "LP", "2004-2016"],
+  ["Javier Gandolfi", ["tijuana"], ["arg"], "LP", "2010-2016"],
+  ["Cristian Pellerano", ["tijuana", "america"], ["arg"], "LCP", "2012-2016"],
+  ["Joe Corona", ["tijuana", "america"], ["usa"], "LP", "2010-2025"],
+  ["Fidel Martínez", ["tijuana", "pumas", "atlas", "queretaro"], ["ecu"], "LP", "2012-2022"],
+  ["Dayro Moreno", ["tijuana", "atlas"], ["col"], "PB", "2011-2015"],
+  ["Avilés Hurtado", ["pachuca", "tijuana", "monterrey", "juarez"], ["col"], "LCPB", "2013-2025"],
+  ["Camilo Sanvezzo", ["queretaro", "tijuana", "toluca"], ["bra"], "PB", "2014-2023"],
+  ["José Antonio Rodríguez", ["tijuana", "chivas", "queretaro", "puebla"], ["mex"], "LP", "2012-2026"],
+  ["Gilberto Mora", ["tijuana"], ["mex"], "P", "2024-2026"],
+  ["Fernando Arce Jr.", ["tijuana", "necaxa", "puebla", "juarez"], ["mex"], "LP", "2013-2026"],
+  ["Paul Arriola", ["tijuana"], ["usa"], "MP", "2013-2017"],
+
+  // ================= SAN LUIS =================
+  ["Unai Bilbao", ["sanluis", "tijuana"], ["esp"], "P", "2019-2026"],
+  ["Germán Berterame", ["sanluis", "monterrey"], ["arg"], "LCP", "2019-2026"],
+  ["Juan Manuel Sanabria", ["sanluis"], ["uru"], "P", "2021-2026"],
+  ["Mateo Klimowicz", ["sanluis"], ["ger"], "EP", "2023-2026"],
+  ["Sébastien Salles-Lamonge", ["sanluis"], ["fra"], "EP", "2023-2026"],
+  ["Mario Ortiz", ["leon", "puebla", "queretaro", "sanluis"], ["mex"], "LP", "2010-2023"],
+  ["Damián Batallini", ["sanluis"], ["arg"], "P", "2023-2025"],
+  ["Javier Güémez", ["america", "queretaro", "sanluis", "tijuana"], ["mex"], "LC", "2010-2026"],
+  ["Taufic Guarch", ["tijuana", "tigres", "sanluis"], ["mex"], "LP", "2010-2021"],
+  ["Léo Bonatini", ["sanluis"], ["bra"], "EP", "2022-2024"],
+
+  // ================= QUERÉTARO =================
+  ["Ronaldinho", ["queretaro"], ["bra"], "EMP", "2014-2015"],
+  ["Jordi Cortizo", ["queretaro", "tijuana", "puebla", "monterrey"], ["mex"], "LP", "2016-2026"],
+  ["Aké Loba", ["queretaro", "monterrey", "tijuana"], ["civ"], "CP", "2019-2025"],
+  ["Hiram Mier", ["monterrey", "queretaro", "chivas"], ["mex"], "LCP", "2010-2024"],
+  ["Erick Torres", ["chivas", "cruzazul", "tijuana", "pumas", "queretaro"], ["mex"], "P", "2010-2024"],
+  ["George Corral", ["america", "queretaro", "puebla"], ["mex"], "LP", "2009-2023"],
+  ["Yerson Candelo", ["queretaro"], ["col"], "P", "2016-2018"],
+
+  // ================= FC JUÁREZ =================
+  ["Darío Lezcano", ["juarez"], ["par"], "P", "2019-2023"],
+  ["Gabriel Fernández", ["juarez", "pumas", "cruzazul"], ["uru"], "P", "2021-2026"],
+  ["Sebastián Jurado", ["cruzazul", "juarez"], ["mex"], "CP", "2018-2026"],
+  ["Ángel Zaldívar", ["chivas", "monterrey", "puebla", "sanluis", "juarez"], ["mex"], "LP", "2013-2026"],
+  ["Dieter Villalpando", ["pachuca", "tigres", "atlas", "necaxa", "chivas", "puebla", "sanluis", "juarez"], ["mex"], "P", "2014-2026"],
+  ["Marco Fabián (Juárez)", ["chivas", "cruzazul", "juarez"], ["mex"], "LEMP", "2007-2023"],
+  ["Aitor García", ["juarez"], ["esp"], "EP", "2023-2026"],
+
+  // ================= ATLANTE =================
+  ["Christian Bermúdez", ["atlante", "america", "puebla", "queretaro"], ["mex"], "LCP", "2006-2024"],
+  ["Giancarlo Maldonado", ["atlante", "atlas"], ["ven"], "LCP", "2007-2012"],
+  ["Federico Vilar", ["atlante", "atlas", "tijuana"], ["arg"], "LCP", "2003-2016"],
+  ["Luis Gabriel Rey", ["atlante", "chivas", "pachuca", "america", "puebla"], ["mex"], "LCP", "2003-2016"],
+  ["Luis Fernando Tena", ["atlante", "cruzazul"], ["mex"], "LC", "1976-1991"],
+  ["Gregorio Cortés", ["atlante"], ["mex"], "LC", "1978-1991"],
+  ["José Guadalupe Cruz", ["atlante", "monterrey"], ["mex"], "LC", "1987-2002"],
+  ["Daniel Guzmán", ["atlante", "puebla", "santos"], ["mex"], "LC", "1986-2000"],
+  ["Jerónimo Amione", ["atlante", "cruzazul", "puebla", "toluca"], ["mex"], "CP", "2009-2021"],
+  ["Eduardo Paredes", ["atlante", "puebla", "sanluis"], ["mex"], "LC", "2006-2018"],
+  ["Alan Acosta", ["atlante"], ["mex"], "P", "2014-2026"],
+  ["Ramiro Costa", ["atlante", "puebla"], ["arg"], "P", "2015-2026"],
+  ["Rafael Márquez Lugo", ["pumas", "monterrey", "pachuca", "atlante", "morelia", "chivas"], ["mex"], "LP", "2000-2015"],
+  ["Santiago Baños", ["america", "atlante"], ["mex"], "LP", "1996-2007"]
+];
+
+// Deduplica por nombre combinando clubes y nacionalidades para que ningún jugador se pierda
+const mergedMap = new Map();
+RAW_DB.forEach(([rawName, teams, nats, ach, era]) => {
+  const cleanName = rawName.replace(/\s*\([^)]*\)$/, "").trim();
+  const validTeams = teams.filter(id => Boolean(TEAMS[id]));
+  const validNats = nats.filter(id => Boolean(FLAGS[id]));
+  const validAch = String(ach).toUpperCase().split("").filter(code => Boolean(ACHIEVEMENTS[code]));
+
+  if (!mergedMap.has(cleanName)) {
+    mergedMap.set(cleanName, {
+      name: cleanName,
+      teams: [...new Set(validTeams)],
+      nats: [...new Set(validNats)],
+      ach: [...new Set(validAch)],
+      era
+    });
+  } else {
+    const existing = mergedMap.get(cleanName);
+    existing.teams = [...new Set([...existing.teams, ...validTeams])];
+    existing.nats = [...new Set([...existing.nats, ...validNats])];
+    existing.ach = [...new Set([...existing.ach, ...validAch])];
+  }
+});
+
+const PLAYERS = [...mergedMap.values()].filter(p => p.teams.length > 0 && p.nats.length > 0);
+
+function normalizeText(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function matchesCriterion(player, crit) {
+  if (crit.type === "team") return player.teams.includes(crit.id);
+  if (crit.type === "nat") return player.nats.includes(crit.id);
+  if (crit.type === "ach") return player.ach.includes(crit.id);
+  return false;
+}
+
+function getValidPlayersForCell(cellIdx) {
+  const r = Math.floor(cellIdx / 3);
+  const c = cellIdx % 3;
+  return PLAYERS.filter(p => matchesCriterion(p, rows[r]) && matchesCriterion(p, cols[c]));
+}
+
+function buildAllCriteria() {
+  const list = [];
+  Object.entries(TEAMS).forEach(([id, t]) => {
+    list.push({ type: "team", id, label: t.name, sub: "Club Liga MX", crestSvg: getTeamCrestSVG(id) });
+  });
+  const usedNats = new Set(PLAYERS.flatMap(p => p.nats));
+  usedNats.forEach(id => {
+    const f = FLAGS[id];
+    if (f) {
+      list.push({ type: "nat", id, label: f.name, sub: "Nacionalidad", badge: f.badge, bg: f.bg, fg: f.fg });
+    }
+  });
+  Object.entries(ACHIEVEMENTS).forEach(([id, a]) => {
+    list.push({ type: "ach", id, label: a.name, sub: "Logro / Carrera", badge: a.short, bg: a.bg, fg: a.fg });
+  });
+  return list;
+}
+
+let gameMode = "solo";
+let botDifficulty = "easy";
+let currentTurn = "p1";
+let rows = [];
+let cols = [];
+let cells = Array(9).fill(null);
+let guessesLeft = 9;
+let gameOver = false;
+let activeCellIndex = null;
+let botTimer = null;
+
+function generateValidBoard() {
+  const all = buildAllCriteria();
+  for (let attempt = 0; attempt < 800; attempt++) {
+    const shuffled = [...all].sort(() => Math.random() - 0.5);
+    const candRows = [];
+    const candCols = [];
+
+    for (const c of shuffled) {
+      if (candRows.length < 3) {
+        if (c.type === "ach" && candRows.some(x => x.type === "ach")) continue;
+        candRows.push(c);
+      } else if (candCols.length < 3) {
+        if (c.type === "nat" && candRows.some(x => x.type === "nat")) continue;
+        if (c.type === "ach" && candRows.some(x => x.type === "ach")) continue;
+        if (c.type === "ach" && candCols.some(x => x.type === "ach")) continue;
+        candCols.push(c);
+      } else {
+        break;
+      }
+    }
+
+    if (candRows.length < 3 || candCols.length < 3) continue;
+
+    let ok = true;
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        const validPlayers = PLAYERS.filter(p => matchesCriterion(p, candRows[r]) && matchesCriterion(p, candCols[c]));
+        if (validPlayers.length === 0) {
+          ok = false;
+          break;
+        }
+      }
+      if (!ok) break;
+    }
+
+    if (ok) {
+      rows = candRows;
+      cols = candCols;
+      return;
+    }
+  }
+}
+
+function createHeaderCell(crit) {
+  const div = document.createElement("div");
+  div.className = "header-cell";
+  const visual = crit.crestSvg
+    ? `<div class="crest-box">${crit.crestSvg}</div>`
+    : `<div class="header-badge" style="background:${crit.bg}; color:${crit.fg};">${crit.badge}</div>`;
+
+  div.innerHTML = `
+    ${visual}
+    <div class="header-title">${crit.label}</div>
+    <div class="header-sub">${crit.sub}</div>
+  `;
+  return div;
+}
+
+function renderBoard() {
+  const board = document.getElementById("gridBoard");
+  board.innerHTML = "";
+
+  const corner = document.createElement("div");
+  corner.className = "corner-cell";
+  corner.innerHTML = "LIGA MX<br><strong>3×3</strong>";
+  board.appendChild(corner);
+
+  cols.forEach(col => board.appendChild(createHeaderCell(col)));
+
+  for (let r = 0; r < 3; r++) {
+    board.appendChild(createHeaderCell(rows[r]));
+    for (let c = 0; c < 3; c++) {
+      const idx = r * 3 + c;
+      const cellData = cells[idx];
+      const cell = document.createElement("div");
+      cell.className = "play-cell";
+
+      if (cellData) {
+        if (cellData.status === "solved") {
+          const ownerClass = cellData.owner === "p2" ? "solved-p2" : (cellData.owner === "bot" ? "solved-bot" : "solved-p1");
+          const ownerLabel = gameMode === "solo"
+            ? ""
+            : `<div class="owner-tag">${cellData.owner === "p1" ? "Jugador 1" : (cellData.owner === "p2" ? "Jugador 2" : "Bot")}</div>`;
+          cell.classList.add(ownerClass);
+          cell.innerHTML = `
+            <div class="solved-name">${cellData.player.name}</div>
+            <div class="solved-meta">${cellData.player.era}</div>
+            ${ownerLabel}
+          `;
+        } else if (cellData.status === "missed") {
+          cell.classList.add("missed");
+          cell.innerHTML = `
+            <div class="solved-name">${cellData.sample}</div>
+            <div class="missed-meta">Ejemplo válido</div>
+          `;
+        }
+      } else {
+        const locked = gameOver || (gameMode === "bot" && currentTurn === "bot");
+        if (locked) cell.classList.add("locked");
+        cell.innerHTML = `<span class="plus">+</span>`;
+        if (!locked) {
+          cell.addEventListener("click", () => openCellModal(idx));
+        }
+      }
+
+      board.appendChild(cell);
+    }
+  }
+
+  const p1Count = cells.filter(x => x && x.status === "solved" && x.owner === "p1").length;
+  const p2Count = cells.filter(x => x && x.status === "solved" && x.owner === "p2").length;
+  const botCount = cells.filter(x => x && x.status === "solved" && x.owner === "bot").length;
+  const totalSolved = p1Count + p2Count + botCount;
+
+  document.getElementById("turnLabel").textContent =
+    gameMode === "solo" ? "Solitario" : (currentTurn === "p1" ? "Jugador 1" : (currentTurn === "p2" ? "Jugador 2" : "Bot pensando..."));
+
+  if (gameMode === "p2") {
+    document.getElementById("scoreCount").textContent = `J1 ${p1Count} - ${p2Count} J2`;
+    document.getElementById("guessesPill").style.display = "none";
+  } else if (gameMode === "bot") {
+    document.getElementById("scoreCount").textContent = `Tú ${p1Count} - ${botCount} Bot`;
+    document.getElementById("guessesPill").style.display = "none";
+  } else {
+    document.getElementById("scoreCount").textContent = `${totalSolved} / 9`;
+    document.getElementById("guessesPill").style.display = "flex";
+    document.getElementById("guessesLeft").textContent = guessesLeft;
+  }
+}
+
+function openCellModal(idx) {
+  if (gameOver || (gameMode === "bot" && currentTurn === "bot")) return;
+  activeCellIndex = idx;
+  const r = Math.floor(idx / 3);
+  const c = idx % 3;
+  document.getElementById("modalCriteria").textContent = `${rows[r].label} + ${cols[c].label}`;
+  document.getElementById("modalFeedback").textContent = "";
+  const input = document.getElementById("playerSearch");
+  input.value = "";
+  renderSuggestions("");
+  document.getElementById("modalBackdrop").classList.add("open");
+  setTimeout(() => input.focus(), 50);
+}
+
+function closeModal() {
+  document.getElementById("modalBackdrop").classList.remove("open");
+  activeCellIndex = null;
+}
+
+function renderSuggestions(query) {
+  const list = document.getElementById("suggestionsList");
+  const label = document.getElementById("listLabel");
+  list.innerHTML = "";
+  if (activeCellIndex === null) return;
+
+  const q = normalizeText(query);
+  const usedNames = new Set(
+    cells.filter(x => x && x.status === "solved").map(x => x.player.name)
+  );
+
+  let items = [];
+  let isRecommended = false;
+
+  if (!q) {
+    const validForCell = getValidPlayersForCell(activeCellIndex).filter(p => !usedNames.has(p.name));
+    items = validForCell.slice(0, 8);
+    isRecommended = true;
+    label.textContent = "Recomendados para esta casilla";
+  } else {
+    const filtered = PLAYERS.filter(p => !usedNames.has(p.name) && normalizeText(p.name).includes(q));
+    const cellValidSet = new Set(getValidPlayersForCell(activeCellIndex).map(p => p.name));
+    filtered.sort((a, b) => {
+      const aOk = cellValidSet.has(a.name) ? 0 : 1;
+      const bOk = cellValidSet.has(b.name) ? 0 : 1;
+      return aOk - bOk || a.name.localeCompare(b.name);
+    });
+    items = filtered.slice(0, 12);
+    label.textContent = `Resultados (${filtered.length})`;
+  }
+
+  if (items.length === 0) {
+    list.innerHTML = `<div class="suggestion-item" style="cursor:default;"><span class="suggestion-era">No hay jugadores disponibles con ese texto.</span></div>`;
+    return;
+  }
+
+  const cellValidSet = new Set(getValidPlayersForCell(activeCellIndex).map(p => p.name));
+
+  items.forEach(player => {
+    const item = document.createElement("div");
+    item.className = "suggestion-item";
+    const badge = (isRecommended || cellValidSet.has(player.name))
+      ? `<span class="rec-badge">Apto</span>`
+      : "";
+    item.innerHTML = `
+      <div><span class="suggestion-name">${player.name}</span>${badge}</div>
+      <span class="suggestion-era">${player.era}</span>
+    `;
+    item.addEventListener("click", () => submitHumanGuess(player));
+    list.appendChild(item);
+  });
+}
+
+function submitHumanGuess(player) {
+  if (activeCellIndex === null || gameOver) return;
+  const r = Math.floor(activeCellIndex / 3);
+  const c = activeCellIndex % 3;
+  const isValid = matchesCriterion(player, rows[r]) && matchesCriterion(player, cols[c]);
+
+  if (gameMode === "solo") {
+    guessesLeft--;
+    if (isValid) {
+      cells[activeCellIndex] = { status: "solved", player, owner: "p1" };
+      closeModal();
+    } else {
+      document.getElementById("modalFeedback").textContent = `❌ ${player.name} no cumple ambos criterios (-1 intento).`;
+      if (guessesLeft <= 0) closeModal();
+    }
+    checkEndGame();
+    renderBoard();
+    return;
+  }
+
+  if (gameMode === "p2") {
+    if (isValid) {
+      cells[activeCellIndex] = { status: "solved", player, owner: currentTurn };
+      currentTurn = currentTurn === "p1" ? "p2" : "p1";
+      closeModal();
+    } else {
+      document.getElementById("modalFeedback").textContent = `❌ ${player.name} no cumple. Pasa el turno.`;
+      currentTurn = currentTurn === "p1" ? "p2" : "p1";
+      renderBoard();
+    }
+    checkEndGame();
+    renderBoard();
+    return;
+  }
+
+  if (gameMode === "bot") {
+    if (isValid) {
+      cells[activeCellIndex] = { status: "solved", player, owner: "p1" };
+      closeModal();
+      checkEndGame();
+      renderBoard();
+      if (!gameOver) {
+        currentTurn = "bot";
+        renderBoard();
+        scheduleBotMove();
+      }
+    } else {
+      document.getElementById("modalFeedback").textContent = `❌ ${player.name} no cumple. Turno del Bot.`;
+      closeModal();
+      currentTurn = "bot";
+      renderBoard();
+      scheduleBotMove();
+    }
+  }
+}
+
+function scheduleBotMove() {
+  clearTimeout(botTimer);
+  botTimer = setTimeout(() => {
+    if (gameOver || gameMode !== "bot" || currentTurn !== "bot") return;
+    const freeIndices = [];
+    for (let i = 0; i < 9; i++) {
+      if (!cells[i]) freeIndices.push(i);
+    }
+    if (freeIndices.length === 0) {
+      checkEndGame();
+      return;
+    }
+
+    const accuracy = botDifficulty === "easy" ? 0.45 : (botDifficulty === "medium" ? 0.72 : 0.95);
+    const chosenIdx = freeIndices[Math.floor(Math.random() * freeIndices.length)];
+    const validPlayers = getValidPlayersForCell(chosenIdx);
+    const usedNames = new Set(cells.filter(x => x && x.status === "solved").map(x => x.player.name));
+    const availableValid = validPlayers.filter(p => !usedNames.has(p.name));
+
+    if (Math.random() < accuracy && availableValid.length > 0) {
+      const pick = availableValid[Math.floor(Math.random() * availableValid.length)];
+      cells[chosenIdx] = { status: "solved", player: pick, owner: "bot" };
+    }
+
+    currentTurn = "p1";
+    checkEndGame();
+    renderBoard();
+  }, 650);
+}
+
+function checkEndGame() {
+  const solvedCount = cells.filter(x => x && x.status === "solved").length;
+  const summary = document.getElementById("summaryBox");
+
+  if (gameMode === "solo") {
+    if (solvedCount === 9 || guessesLeft <= 0) {
+      gameOver = true;
+      summary.classList.add("visible");
+      summary.innerHTML = solvedCount === 9
+        ? `🎉 <strong>¡Tablero perfecto!</strong> Completaste los 9 cuadros.`
+        : `🏁 <strong>Fin de partida:</strong> Lograste <strong>${solvedCount} / 9</strong> aciertos.`;
+    }
+    return;
+  }
+
+  if (solvedCount === 9) {
+    gameOver = true;
+    const p1 = cells.filter(x => x && x.owner === "p1").length;
+    const p2 = cells.filter(x => x && x.owner === "p2").length;
+    const bot = cells.filter(x => x && x.owner === "bot").length;
+    summary.classList.add("visible");
+    if (gameMode === "p2") {
+      summary.innerHTML = p1 > p2
+        ? `🏆 <strong>¡Gana Jugador 1!</strong> (${p1} a ${p2})`
+        : (p2 > p1 ? `🏆 <strong>¡Gana Jugador 2!</strong> (${p2} a ${p1})` : `🤝 <strong>¡Empate!</strong> (${p1} a ${p2})`);
+    } else {
+      summary.innerHTML = p1 > bot
+        ? `🏆 <strong>¡Ganaste al Bot!</strong> (${p1} a ${bot})`
+        : (bot > p1 ? `🤖 <strong>¡El Bot ganó!</strong> (${bot} a ${p1})` : `🤝 <strong>¡Empate!</strong> (${p1} a ${bot})`);
+    }
+  }
+}
+
+function revealAll() {
+  clearTimeout(botTimer);
+  gameOver = true;
+  const usedNames = new Set(cells.filter(x => x && x.status === "solved").map(x => x.player.name));
+  for (let i = 0; i < 9; i++) {
+    if (!cells[i]) {
+      const valid = getValidPlayersForCell(i);
+      const unused = valid.find(p => !usedNames.has(p.name)) || valid[0];
+      cells[i] = { status: "missed", sample: unused ? unused.name : "N/A" };
+    }
+  }
+  renderBoard();
+}
+
+function startNewGame() {
+  clearTimeout(botTimer);
+  cells = Array(9).fill(null);
+  guessesLeft = 9;
+  currentTurn = "p1";
+  gameOver = false;
+  document.getElementById("summaryBox").classList.remove("visible");
+  document.getElementById("summaryBox").innerHTML = "";
+  generateValidBoard();
+  renderBoard();
+}
+
+document.querySelectorAll("#modeSelector .mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#modeSelector .mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    gameMode = btn.dataset.mode;
+    document.getElementById("botDifficultyGroup").style.display = gameMode === "bot" ? "inline-flex" : "none";
+    startNewGame();
+  });
+});
+
+document.querySelectorAll("#botDifficultyGroup .mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#botDifficultyGroup .mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    botDifficulty = btn.dataset.diff;
+    startNewGame();
+  });
+});
+
+document.getElementById("playerSearch").addEventListener("input", e => renderSuggestions(e.target.value));
+document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+document.getElementById("modalBackdrop").addEventListener("click", e => {
+  if (e.target.id === "modalBackdrop") closeModal();
+});
+document.getElementById("revealBtn").addEventListener("click", revealAll);
+document.getElementById("newGameBtn").addEventListener("click", startNewGame);
+
+startNewGame();
+</script>
+</body>
+</html>
